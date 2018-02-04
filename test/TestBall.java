@@ -37,29 +37,18 @@
 
 import ColorSwitchApp.modele.Rond;
 import java.util.ArrayList;
-import javafx.animation.Animation;
-import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import javafx.scene.Group;
 import javafx.scene.Scene;
-
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-
 import javafx.scene.shape.Shape;
-import javafx.scene.shape.Sphere;
-import javafx.scene.shape.StrokeLineCap;
-import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -93,19 +82,25 @@ public class TestBall extends Application {
     private void init(Stage primaryStage) {
         Group root = new Group();
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root, 500,500,Color.BLACK));
+        Scene scene = new Scene(root, 500, 500);
+        scene.setFill(Color.BLACK);
+        primaryStage.setScene(scene);
         
         x=250.0;
-        y=450.0;
-        tailleBall=25.0;
-        //final Sphere sphere = new Sphere();  
-        //sphere.setRadius(25.0);   
-        //sphere.setTranslateX(250); 
-        //sphere.setTranslateY(450);
-        //root.getChildren().add(sphere);
+        y=350.0;
+        tailleBall=10.0;
         
-        final Circle ball = new Circle(tailleBall, Color.BLUE);
-        ball.relocate(x-tailleBall, y);
+        final Rond r=new Rond(x,y,50,10,95,80);
+
+        ArrayList liste = r.getListeArc();
+        for(Object a: liste){
+            r.tourne((Arc)a,-360,5);
+            root.getChildren().add((Arc)a);
+        }
+        
+      
+        final Circle ball = new Circle(tailleBall, Color.PURPLE);
+        ball.relocate(x-tailleBall, y+100);
         root.getChildren().add(ball);
         
         
@@ -113,18 +108,34 @@ public class TestBall extends Application {
         eventHandler = new EventHandler<MouseEvent>() { 
             @Override
             public void handle(MouseEvent e) {
-                Double saut=45.0;
+                Double saut=35.0;
                 ball.setLayoutY(ball.getLayoutY()-saut);
+                ArrayList<Shape> liste = r.getListeArc();
+                
+                for(Shape a: liste){     
+                    Shape s = Shape.intersect(ball, a);
+                    if(s.getLayoutBounds().getHeight()<=0 || s.getLayoutBounds().getWidth()<=0) {
+                        System.out.println("Non");
+                    }
+                    else {
+                        System.out.println("oui");
+                        if((ball.getFill()==a.getStroke())){
+                            System.out.println("ok");
+                            System.out.println(ball.getFill());
+                            System.out.println(a.getStroke());
+                        }  
+                    }  
+                }
             }  
         };
 
-        ball.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler); 
+        scene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler); 
       
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(20),new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
                 Double gravite=1.0;
-                if(ball.getLayoutY()<=y+tailleBall){
+                if(ball.getLayoutY()<=y+tailleBall+100){
                     ball.setLayoutY(ball.getLayoutY()+gravite);
                 }
             }
@@ -151,3 +162,4 @@ public class TestBall extends Application {
 
 
 }
+
