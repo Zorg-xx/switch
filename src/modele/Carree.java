@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ColorSwitchApp.modele;
+package modele;
 
 import java.util.ArrayList;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineBuilder;
-import javafx.scene.shape.StrokeLineCap;
-
 
 public class Carree extends Forme{
     
@@ -24,10 +22,10 @@ public class Carree extends Forme{
         largeur=_largeur;
         double n = largeur/2;
         listeLigne=new ArrayList<Line>();
-        creerLigne(grosseurTrait,VIOLET,_x-n,_y+n,_x+n,_y+n);
-        creerLigne(grosseurTrait,JAUNE,_x+n,_y+n,_x+n,_y-n);
-        creerLigne(grosseurTrait,VERT,_x+n,_y-n,_x-n,_y-n);
-        creerLigne(grosseurTrait,ROUGE,_x-n,_y-n,_x-n,_y+n);
+        creerLigne(grosseurTrait,violet,_x-n,_y+n,_x+n,_y+n);
+        creerLigne(grosseurTrait,jaune,_x+n,_y+n,_x+n,_y-n);
+        creerLigne(grosseurTrait,vert,_x+n,_y-n,_x-n,_y-n);
+        creerLigne(grosseurTrait,rouge,_x-n,_y-n,_x-n,_y+n);
     }
     
     public ArrayList getListeLigne(){ 
@@ -35,17 +33,15 @@ public class Carree extends Forme{
     }
     
     private Line creerLigne(int grosseurTrait,Color couleur, double _departX,double _departY, double _finX, double _finY){
-        Line l;
-        l = LineBuilder.create()
-                .startX(_departX)
-                .startY(_departY)
-                .endX(_finX)
-                .endY(_finY)
-                .fill(null)
-                .stroke(couleur)
-                .strokeWidth(grosseurTrait)
-                .strokeLineCap(StrokeLineCap.ROUND)
-                .build();
+        Line l = LineBuilder.create()
+            .startX(_departX)
+            .startY(_departY)
+            .endX(_finX)
+            .endY(_finY)
+            .fill(null)
+            .stroke(couleur)
+            .strokeWidth(grosseurTrait)
+            .build();
         listeLigne.add(l);
         return l;
     }
