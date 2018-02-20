@@ -21,28 +21,29 @@ public class Game extends Group
 
     Double x;
     Double y;
-
-    Double tailleBall;
+    Double limite;
+    private  Double tailleBall ;
     private SceneApp scn;
-    
+    boolean start ;
     private SceneControleur scnCtrl;
     
     public Game(SceneApp scn){
     	System.out.println("test Balle");
     	this.scn=scn;
-    	scnCtrl = new SceneControleur(null);
     	init();
     }
     
     private void init(){
     	 x=250.0;
-         y=350.0;
+         y=250.0;
          tailleBall=10.0;
-         
+         start=false;
+         scnCtrl = new SceneControleur(null, y+tailleBall+200, scn);
+     	
          final Circle ball = new Circle(tailleBall, Color.PURPLE);
-         ball.relocate(x-tailleBall, y+100);
+         ball.relocate(x-tailleBall, y+200);
          
-         final Rond r=new Rond(x,y,50,10,95,80);
+         final Rond r=new Rond(x,100.0,100,10,95,85);
 
          ArrayList liste = r.getListeArc();
          for(Object a: liste){
@@ -50,19 +51,29 @@ public class Game extends Group
              this.getChildren().add((Arc)a);
          }
          
+         final Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10),new EventHandler<ActionEvent>() {
+             @Override
+             public void handle(ActionEvent t) {
+                 scnCtrl.move(ball, r.getListeArc(), false);
+             }
+         }));
+         timeline.setCycleCount(Timeline.INDEFINITE);
+         
+         scnCtrl.initTimeLine(timeline);
          
          EventHandler<MouseEvent> eventHandler;
          eventHandler = new EventHandler<MouseEvent>() { 
              @Override
              public void handle(MouseEvent e) {
-                 System.out.println("click");
-                 scnCtrl.move(ball, r);
+                 scnCtrl.move(ball, r.getListeArc(), true);
+                 if(!start){
+                	 timeline.play();
+                	 start = true;
+                 }
              }  
          };
          scn.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler); 
-         
-         
-         
+
          this.getChildren().add(ball);
          scn.setRoot(this);
     }

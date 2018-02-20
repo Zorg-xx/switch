@@ -30,7 +30,7 @@ public class ColorApp extends Group {
     public ColorApp(SceneApp scn){
     	System.out.println("colorApp");
     	this.scn=scn;
-    	scnCtrl = new SceneControleur(null);
+    	scnCtrl = new SceneControleur(null,0, scn);
     	this.init();
     }
     
@@ -68,9 +68,9 @@ public class ColorApp extends Group {
         
         quitter.setText("Quitter");
         quitter.setOnAction(new ExitGame());
-
         quitter.setLayoutX(200);
         quitter.setLayoutY(300);
+        
         scn.setRoot(this);
         
 
