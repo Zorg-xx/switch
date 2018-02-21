@@ -3,6 +3,8 @@ package vue;
 import static javafx.scene.paint.Color.RED;
 
 import controleur.SceneControleur;
+import java.io.File;
+import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.VPos;
@@ -14,6 +16,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -38,39 +43,38 @@ public class ColorApp extends Group {
     	
         //zone de texte
         Text txt = new Text();
-        txt.setLayoutX(150);
-        txt.setLayoutY(100);
-        txt.setText("Color Inifinity");
+        txt.setLayoutX(175);
+        txt.setLayoutY(50);
+        txt.setText("Color Switch");
         txt.setTextOrigin(VPos.TOP);
         txt.setFont(Font.font("Comic sans MS",25));
         txt.setFill(Color.RED);
+
         
-        
-        //effets
-        DropShadow ds = new DropShadow();
-        ds.setRadius(3);
-        ds.setOffsetX(3);
-        ds.setOffsetY(3);
-        ds.setColor(RED);
-    	
-        this.getChildren().add(txt);
-        this.getChildren().add(play);
-        this.getChildren().add(quitter);
-        //root.setEffect(ds);
-    	
-        
-    	
-        play.setText("Jouer");
+        final URL imageURL = getClass().getResource("play.png");  
+        final Image imageplay = new Image(imageURL.toExternalForm());
+        ImageView imv = new ImageView (imageplay);
+	play.setGraphic(imv);
         play.setOnAction(new GoToPlay());
-        //placement des boutons
         play.setLayoutX(200);
         play.setLayoutY(200);
+
         
-        quitter.setText("Quitter");
+        final URL imageURL2 = getClass().getResource("quitter.png");  
+        final Image imagequitter = new Image(imageURL2.toExternalForm());
+        ImageView quit = new ImageView (imagequitter);
+	quitter.setGraphic(quit);
+        
         quitter.setOnAction(new ExitGame());
         quitter.setLayoutX(200);
         quitter.setLayoutY(300);
         
+
+        this.getChildren().add(txt);
+        this.getChildren().add(play);
+        //this.getChildren().setAll(play);
+        this.getChildren().add(quitter);
+        //root.setEffect(ds);
         scn.setRoot(this);
         
 

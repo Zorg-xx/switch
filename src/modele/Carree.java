@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ColorSwitchApp.modele;
+package modele;
 
 import java.util.ArrayList;
 import javafx.scene.paint.Color;
@@ -24,10 +24,10 @@ public class Carree extends Forme{
         largeur=_largeur;
         double n = largeur/2;
         listeLigne=new ArrayList<Line>();
-        creerLigne(grosseurTrait,VIOLET,_x-n,_y+n,_x+n,_y+n);
-        creerLigne(grosseurTrait,JAUNE,_x+n,_y+n,_x+n,_y-n);
-        creerLigne(grosseurTrait,VERT,_x+n,_y-n,_x-n,_y-n);
-        creerLigne(grosseurTrait,ROUGE,_x-n,_y-n,_x-n,_y+n);
+        creerLigne(grosseurTrait,violet,_x-n,_y+n,_x+n,_y+n);
+        creerLigne(grosseurTrait,jaune,_x+n,_y+n,_x+n,_y-n);
+        creerLigne(grosseurTrait,vert,_x+n,_y-n,_x-n,_y-n);
+        creerLigne(grosseurTrait,rouge,_x-n,_y-n,_x-n,_y+n);
     }
     
     public ArrayList getListeLigne(){ 
