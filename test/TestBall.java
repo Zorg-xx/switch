@@ -35,7 +35,7 @@
 
 
 
-import ColorSwitchApp.modele.Rond;
+import modele.Rond;
 import java.util.ArrayList;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

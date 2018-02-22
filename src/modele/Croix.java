@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ColorSwitchApp.modele;
+package modele;
 
 import java.util.ArrayList;
 import javafx.scene.paint.Color;
@@ -24,10 +24,10 @@ public class Croix extends Forme{
         largeur=_largeur;
         decalage=_decalage;
         listeLigneC=new ArrayList<Line>();
-        creerLigneC(grosseurTrait,VIOLET,_x,_y,_x,_y+largeur);
-        creerLigneC(grosseurTrait,JAUNE,_x,_y,_x+largeur,_y);
-        creerLigneC(grosseurTrait,VERT,_x,_y,_x,_y-largeur);
-        creerLigneC(grosseurTrait,ROUGE,_x,_y,_x-largeur,_y);
+        creerLigneC(grosseurTrait,violet,_x,_y,_x,_y+largeur);
+        creerLigneC(grosseurTrait,jaune,_x,_y,_x+largeur,_y);
+        creerLigneC(grosseurTrait,vert,_x,_y,_x,_y-largeur);
+        creerLigneC(grosseurTrait,rouge,_x,_y,_x-largeur,_y);
     }
     
     public ArrayList getListeLigneC(){ 

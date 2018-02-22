@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import ColorSwitchApp.modele.Rond;
+import modele.Rond;
 import java.util.ArrayList;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
