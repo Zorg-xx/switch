@@ -20,10 +20,10 @@ import javafx.util.Duration;
  * @author y
  */
 public class Forme {
-    protected final static Color violet=Color.PURPLE;
-    protected final static Color jaune=Color.YELLOW;
-    protected final static Color vert=Color.GREEN;
-    protected final static Color rouge=Color.RED;
+    protected final static Color VIOLET=Color.PURPLE;
+    protected final static Color JAUNE=Color.YELLOW;
+    protected final static Color VERT=Color.GREEN;
+    protected final static Color ROUGE=Color.RED;
     
     protected Double x;
     protected Double y;
