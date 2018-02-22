@@ -24,10 +24,10 @@ public class Carree extends Forme{
         largeur=_largeur;
         double n = largeur/2;
         listeLigne=new ArrayList<Line>();
-        creerLigne(grosseurTrait,violet,_x-n,_y+n,_x+n,_y+n);
-        creerLigne(grosseurTrait,jaune,_x+n,_y+n,_x+n,_y-n);
-        creerLigne(grosseurTrait,vert,_x+n,_y-n,_x-n,_y-n);
-        creerLigne(grosseurTrait,rouge,_x-n,_y-n,_x-n,_y+n);
+        creerLigne(grosseurTrait,VIOLET,_x-n,_y+n,_x+n,_y+n);
+        creerLigne(grosseurTrait,JAUNE,_x+n,_y+n,_x+n,_y-n);
+        creerLigne(grosseurTrait,VERT,_x+n,_y-n,_x-n,_y-n);
+        creerLigne(grosseurTrait,ROUGE,_x-n,_y-n,_x-n,_y+n);
     }
     
     public ArrayList getListeLigne(){ 
