@@ -1,12 +1,13 @@
 package vue;
 
-import static javafx.scene.paint.Color.RED;
 
 import controleur.SceneControleur;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,7 +19,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Arc;
+import modele.Rond;
 
 
 /**
@@ -27,8 +31,6 @@ import javafx.scene.layout.VBox;
  */
 public class ColorApp extends Group {
     private SceneApp scn;
-    private Button play = new Button();
-    private Button quitter = new Button();
     
     private SceneControleur scnCtrl;
     
@@ -50,31 +52,63 @@ public class ColorApp extends Group {
         txt.setFont(Font.font("Comic sans MS",25));
         txt.setFill(Color.RED);
 
-        
+        //image pour lancer le jeu et son listeneur
         final URL imageURL = getClass().getResource("play.png");  
         final Image imageplay = new Image(imageURL.toExternalForm());
         ImageView imv = new ImageView (imageplay);
-	play.setGraphic(imv);
-        play.setOnAction(new GoToPlay());
-        play.setLayoutX(200);
-        play.setLayoutY(200);
+        imv.setFitHeight(50);
+        imv.setFitWidth(50);
+        imv.setLayoutX(200);
+        imv.setLayoutY(200);
+        imv.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event) {
+                new Game(scn);
+            }
+        });
 
-        
+        //image pour quitter le jeu et son listeneur
         final URL imageURL2 = getClass().getResource("quitter.png");  
         final Image imagequitter = new Image(imageURL2.toExternalForm());
         ImageView quit = new ImageView (imagequitter);
-	quitter.setGraphic(quit);
-        
-        quitter.setOnAction(new ExitGame());
-        quitter.setLayoutX(200);
-        quitter.setLayoutY(300);
+        quit.setFitHeight(50);
+        quit.setFitWidth(50);
+        quit.setLayoutX(200);
+        quit.setLayoutY(400);
+        quit.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event) {
+                scnCtrl.stopApp();
+            }
+        });
         
 
+        //premier cercle qui tourne autour de l'image pour lancer le jeu
+        final Rond rond1 = new Rond(225.0,225.0,30,5,0,90);
+        ArrayList liste = rond1.getListeArc();
+        for(Object a: liste){
+            rond1.tourne((Arc)a,-360,4);
+            this.getChildren().add((Arc)a);
+        }
+        
+        //deuxieme cercle qui tourne autour de l'image pour lancer le jeu
+        final Rond rond2 = new Rond(225.0,225.0,40,10,0,90);
+        ArrayList liste1 = rond2.getListeArc();
+        for(Object a: liste1){
+            rond2.tourne((Arc)a,360,5);
+            this.getChildren().add((Arc)a);
+        }
+        
+        //troisieme cercle qui tourne autour de l'image pour lancer le jeu
+        final Rond rond3 = new Rond(225.0,225.0,55,15,0,90);
+        ArrayList liste2 = rond3.getListeArc();
+        for(Object a: liste2){
+            rond3.tourne((Arc)a,-360,3);
+            this.getChildren().add((Arc)a);
+        }
+        
+        
         this.getChildren().add(txt);
-        this.getChildren().add(play);
-        //this.getChildren().setAll(play);
-        this.getChildren().add(quitter);
-        //root.setEffect(ds);
+        this.getChildren().add(imv);
+        this.getChildren().add(quit);
         scn.setRoot(this);
         
 
