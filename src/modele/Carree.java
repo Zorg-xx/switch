@@ -26,8 +26,8 @@ public class Carree extends Forme{
         listeLigne=new ArrayList<Line>();
         creerLigne(grosseurTrait,VIOLET,_x-n,_y+n,_x+n,_y+n);
         creerLigne(grosseurTrait,JAUNE,_x+n,_y+n,_x+n,_y-n);
-        creerLigne(grosseurTrait,VERT,_x+n,_y-n,_x-n,_y-n);
-        creerLigne(grosseurTrait,ROUGE,_x-n,_y-n,_x-n,_y+n);
+        creerLigne(grosseurTrait,CYAN,_x+n,_y-n,_x-n,_y-n);
+        creerLigne(grosseurTrait,ROSE,_x-n,_y-n,_x-n,_y+n);
     }
     
     public ArrayList getListeLigne(){ 

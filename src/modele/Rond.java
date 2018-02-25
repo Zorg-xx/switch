@@ -47,8 +47,8 @@ public class Rond extends Forme{
         listeArc=new ArrayList<Arc>();
         creerArc(radius,grosseurTrait,VIOLET,angleDepart,longueurArc);
         creerArc(radius,grosseurTrait,JAUNE,angleDepart+90,longueurArc);
-        creerArc(radius,grosseurTrait,VERT,angleDepart+(90*2),longueurArc);
-        creerArc(radius,grosseurTrait,ROUGE,angleDepart+(90*3),longueurArc);
+        creerArc(radius,grosseurTrait,CYAN,angleDepart+(90*2),longueurArc);
+        creerArc(radius,grosseurTrait,ROSE,angleDepart+(90*3),longueurArc);
     }
     
     public ArrayList getListeArc(){

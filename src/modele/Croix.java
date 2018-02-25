@@ -26,8 +26,8 @@ public class Croix extends Forme{
         listeLigneC=new ArrayList<Line>();
         creerLigneC(grosseurTrait,VIOLET,_x,_y,_x,_y+largeur);
         creerLigneC(grosseurTrait,JAUNE,_x,_y,_x+largeur,_y);
-        creerLigneC(grosseurTrait,VERT,_x,_y,_x,_y-largeur);
-        creerLigneC(grosseurTrait,ROUGE,_x,_y,_x-largeur,_y);
+        creerLigneC(grosseurTrait,CYAN,_x,_y,_x,_y-largeur);
+        creerLigneC(grosseurTrait,ROSE,_x,_y,_x-largeur,_y);
     }
     
     public ArrayList getListeLigneC(){ 

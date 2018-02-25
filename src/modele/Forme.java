@@ -22,8 +22,8 @@ import javafx.util.Duration;
 public class Forme {
     protected final static Color VIOLET=Color.PURPLE;
     protected final static Color JAUNE=Color.YELLOW;
-    protected final static Color VERT=Color.GREEN;
-    protected final static Color ROUGE=Color.RED;
+    protected final static Color CYAN=Color.CYAN;
+    protected final static Color ROSE=Color.DEEPPINK;
     
     protected Double x;
     protected Double y;
