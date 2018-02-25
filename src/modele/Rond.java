@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele;
+package ColorSwitchApp.modele;
 
+import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
@@ -13,7 +14,7 @@ import javafx.scene.shape.ArcType;
 
 /**
  *
- * @author y
+ * @author Yohann
  */
 
 /* exemple d'utilisation
@@ -70,5 +71,10 @@ public class Rond extends Forme{
             .build();
         listeArc.add(a);
         return a;
+    }
+
+    @Override
+    public Shape impl_configShape() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

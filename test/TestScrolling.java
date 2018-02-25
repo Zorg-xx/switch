@@ -30,7 +30,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import modele.Rond;
+import ColorSwitchApp.modele.Carre;
+import ColorSwitchApp.modele.Croix;
+import ColorSwitchApp.modele.Rond;
 import java.util.ArrayList;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
@@ -40,6 +42,7 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
@@ -47,6 +50,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
@@ -64,40 +68,47 @@ public class TestScrolling extends Application {
     Double y;
     Double yy;
     
+    
+    Double xxx;
+    Double yyy;
+    
+    Double xxxx;
+    Double yyyy;
+    
+    
     ArrayList<ArrayList<Shape>> obs;
     
     Circle ball;
+    
+    Group root;
 
     private void init(final Stage primaryStage) {
-        Group root = new Group();
+        root = new Group();
         //primaryStage.setResizable(false);
 
         
-        primaryStage.setMaxHeight(500);
+        primaryStage.setMaxHeight(700);
         primaryStage.setMaxWidth(500);
         
         Scene scene = new Scene(root, 500,700);
         scene.setFill(Color.BLACK);
         primaryStage.setScene(scene);
-        //primaryStage.setScene(new Scene(root, 500,500,Color.BLACK));
-        
-        final PerspectiveCamera pc=new PerspectiveCamera();
-        //pc.setLayoutY(1250.0);
-        scene.setCamera(pc);
-        
-        
-        
+              
         x=250.0;
         y=50.0;
 
         xx=250.0;
-        yy=300.0;
+        yy=400.0;
         
+        xxx=200.0;
+        yyy=-250.0;
+        
+        xxxx=250.0;
+        yyyy=-550.0;
        
         obs=new ArrayList();
         
-        final Rond r=new Rond(x,y,50,10,95,80);
-
+        final Rond r=new Rond(x,y,90,10,95,84);
         ArrayList liste = r.getListeArc();
         obs.add(liste);
         for(Object a: liste){
@@ -106,24 +117,37 @@ public class TestScrolling extends Application {
         }
         
         
-        final Rond r1=new Rond(xx,yy,50,10,95,80);
-        
+        final Rond r1=new Rond(xx,yy,90,10,95,84);      
         ArrayList liste1 = r1.getListeArc();
         obs.add(liste1);
         for(Object a: liste1){
-            r1.tourne((Arc)a,-360,5);
+            r1.tourne((Arc)a,360,5);
             root.getChildren().add((Arc)a);
-
         }
-
-
         
+        final Croix c= new Croix(xxx,yyy,10,75);
+        ArrayList liste3=c.getListeLigneC();
+        obs.add(liste3);
+        for(Object a: liste3){
+            c.tourne((Line)a,360,7);
+            root.getChildren().add((Line)a);
+        }
+        
+        final Carre c1= new Carre(xxxx,yyyy,10,100);
+        ArrayList liste33=c1.getListeLigne();
+        obs.add(liste33);
+        for(Object a: liste33){
+            c1.tourne((Line)a,-360,5);
+            root.getChildren().add((Line)a);
+        }
+        
+        
+        
+      
         ball = new Circle(10, Color.PURPLE);
-        ball.relocate(240, 430);
+        ball.relocate(240, 600);
         root.getChildren().add(ball);
         
-        
-
          
         EventHandler<MouseEvent> eventHandler;
       
@@ -131,33 +155,25 @@ public class TestScrolling extends Application {
             @Override
             public void handle(MouseEvent e) {
                 ball.setLayoutY(ball.getLayoutY()-35);
-                //ArrayList<Shape> liste = r.getListeArc();
-                
-                System.out.println(primaryStage.getMaxHeight()/2);
-                if(primaryStage.getMaxHeight()/2>ball.getLayoutY()){
-                        pc.setLayoutY(pc.getLayoutY()-5);
-                    }
-             
-                //pc.setLayoutY(pc.getLayoutY()-5);
-                
-                verifierCollision();
-                    
+                verifierCollision();   
             }  
         };
       
         
-       scene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler); 
+        scene.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler); 
 
       
-      Timeline timeline = new Timeline(new KeyFrame(Duration.millis(20),new EventHandler<ActionEvent>() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(20),new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
-                if(ball.getLayoutY()<=450){
+                if(ball.getLayoutY()<=600){
                     ball.setLayoutY(ball.getLayoutY()+1);
+                }
+                
+                Bounds b=ball.localToScene(ball.getBoundsInLocal());
+                if(primaryStage.getMaxHeight()/2>b.getMinY()){
                     
-                    
-                    //pc.setLayoutY(pc.getLayoutY()+1);
-
+                   root.setLayoutY(root.getLayoutY()+1);
                 }
                 verifierCollision();
             }
@@ -177,12 +193,12 @@ public class TestScrolling extends Application {
                     //System.out.println("Non");
                 }
                 else {
-                    System.out.println("oui");
                     if((ball.getFill()==a.getStroke())){
                         System.out.println("ok");
-                        System.out.println(ball.getFill());
-                        System.out.println(a.getStroke());
-                    }  
+                    }
+                    else{
+                        System.out.println("boom");
+                    }
                 }  
             }
         }      

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele;
+package ColorSwitchApp.modele;
 
+import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -18,11 +19,10 @@ public class Croix extends Forme{
     double decalage;
     ArrayList<Line>listeLigneC;
     
-    public Croix(double _x,double _y, int _grosseurTrait, int _largeur, int _decalage){
+    public Croix(double _x,double _y, int _grosseurTrait, int _longueur){
         super(_x,_y);
         grosseurTrait=_grosseurTrait;
-        largeur=_largeur;
-        decalage=_decalage;
+        largeur=_longueur;
         listeLigneC=new ArrayList<Line>();
         creerLigneC(grosseurTrait,VIOLET,_x,_y,_x,_y+largeur);
         creerLigneC(grosseurTrait,JAUNE,_x,_y,_x+largeur,_y);
@@ -47,5 +47,10 @@ public class Croix extends Forme{
             .build();
         listeLigneC.add(l);
         return l;
+    }
+
+    @Override
+    public Shape impl_configShape() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

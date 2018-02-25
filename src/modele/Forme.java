@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele;
+package ColorSwitchApp.modele;
 
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
@@ -17,9 +17,10 @@ import javafx.util.Duration;
 
 /**
  *
- * @author y
+ * @author Yohann
  */
-public class Forme {
+public abstract class Forme extends Shape{
+    
     protected final static Color VIOLET=Color.PURPLE;
     protected final static Color JAUNE=Color.YELLOW;
     protected final static Color CYAN=Color.CYAN;
