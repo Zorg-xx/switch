@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 
 import ColorSwitchApp.modele.Carre;
@@ -28,10 +23,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-/**
- *
- * @author y
- */
 public class Vue2 {
     
     Group root;
@@ -66,20 +57,6 @@ public class Vue2 {
        scene=new Scene(root,ps.getMaxWidth(),ps.getMaxHeight());
        scene.setFill(Color.BLACK);
        
-       /*
-       bouton=new Button();
-       bouton.setId("bouton2");
-       bouton.setLayoutX(150);
-       bouton.setLayoutY(250);
-       bouton.setText("Vers vue1");
-       
-       ControleurChangeVue ccv=new ControleurChangeVue(ps);
-       bouton.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
-       
-       */
-       //bouton.setOnAction(e->{Vue1 v=new Vue1(ps);});
-       
-       //group.getChildren().add(bouton);
        
        ps.setScene(scene);
        
@@ -189,13 +166,10 @@ public class Vue2 {
         for(ArrayList<Shape> f: obs){      
             for(Shape a: f){     
                 Shape s = Shape.intersect(ball, a);
-                if(s.getLayoutBounds().getHeight()<=0 || s.getLayoutBounds().getWidth()<=0) {
-                    //System.out.println("Non");
-                }
-                else {
+                if(!(s.getLayoutBounds().getHeight()<=0)) {
                     if((ball.getFill()==a.getStroke())){
                         System.out.println("ok");
-                    }
+	            }
                     else{
                         System.out.println("boom");
                     }

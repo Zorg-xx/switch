@@ -7,6 +7,7 @@ package ColorSwitchApp.modele;
 
 import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
+import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineBuilder;
@@ -35,6 +36,14 @@ public class Carre extends Forme{
         return listeLigne;
     }
     
+    public void initCarre(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
+        obs.add(listeLigne);
+        for(Object a: listeLigne){
+            this.tourne((Line)a, sensRotation,vitesseRotation);
+            group.getChildren().add((Line)a);
+        }
+    }
+    
     private Line creerLigne(int grosseurTrait,Color couleur, double _departX,double _departY, double _finX, double _finY){
         Line l;
         l = LineBuilder.create()
@@ -54,5 +63,10 @@ public class Carre extends Forme{
     @Override
     public Shape impl_configShape() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Double getY() {
+        return this.y;
     }
 }

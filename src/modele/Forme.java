@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ColorSwitchApp.modele;
 
 import javafx.animation.Animation;
@@ -15,10 +11,7 @@ import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-/**
- *
- * @author Yohann
- */
+
 public abstract class Forme extends Shape{
     
     protected final static Color VIOLET=Color.PURPLE;
@@ -33,6 +26,11 @@ public abstract class Forme extends Shape{
         x=_x;
         y=_y;
     }
+    
+    
+    public abstract Double getY();
+        
+    
     //360 rotation horaire, -360 rotation anti-horaire
     //vitesse 5
     public void tourne(Shape p, int sensRotation, int vitesse){
