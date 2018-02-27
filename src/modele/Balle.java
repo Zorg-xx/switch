@@ -1,4 +1,4 @@
-package modele;
+package ColorSwitchApp.modele;
 
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
@@ -6,10 +6,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 
-public class Balle extends Circle{
+public class Balle{
     
-    Circle balle;
-    Color couleur;
+    private Circle balle;
+    private Color couleur;
     
     public Balle(Group group,int _x,int _y){
     

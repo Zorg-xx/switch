@@ -29,7 +29,7 @@ public abstract class Forme extends Shape{
     
     
     public abstract Double getY();
-        
+   
     
     //360 rotation horaire, -360 rotation anti-horaire
     //vitesse 5

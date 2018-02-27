@@ -35,11 +35,11 @@ vitesse rotation plus l'entier est élevé, plus la vitesse est lente
 
 public class Rond extends Forme{
     
-    int radius;
-    int grosseurTrait;
-    int angleDepart;
-    int longueurArc;
-    ArrayList<Arc>listeArc;
+    private int radius;
+    private int grosseurTrait;
+    private int angleDepart;
+    private int longueurArc;
+    private ArrayList<Arc>listeArc;
     
     public Rond(Double _x,Double _y, int _radius,int _grosseurTrait, int _angleDepart, int _longueurArc){
         super(_x,_y);
@@ -92,4 +92,5 @@ public class Rond extends Forme{
     public Double getY() {
         return this.y;
     }
+
 }

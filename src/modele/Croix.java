@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ColorSwitchApp.modele;
 
 import com.sun.javafx.geom.Shape;
@@ -15,20 +11,19 @@ import javafx.scene.shape.StrokeLineCap;
 
 public class Croix extends Forme{
     
-    int grosseurTrait;
-    int largeur;
-    double decalage;
-    ArrayList<Line>listeLigneC;
+    private int grosseurTrait;
+    private int longueur;
+    private ArrayList<Line>listeLigneC;
     
     public Croix(double _x,double _y, int _grosseurTrait, int _longueur){
         super(_x,_y);
         grosseurTrait=_grosseurTrait;
-        largeur=_longueur;
+        longueur=_longueur;
         listeLigneC=new ArrayList<Line>();
-        creerLigneC(grosseurTrait,VIOLET,_x,_y,_x,_y+largeur);
-        creerLigneC(grosseurTrait,JAUNE,_x,_y,_x+largeur,_y);
-        creerLigneC(grosseurTrait,CYAN,_x,_y,_x,_y-largeur);
-        creerLigneC(grosseurTrait,ROSE,_x,_y,_x-largeur,_y);
+        creerLigneC(grosseurTrait,VIOLET,_x,_y,_x,_y+longueur);
+        creerLigneC(grosseurTrait,JAUNE,_x,_y,_x+longueur,_y);
+        creerLigneC(grosseurTrait,CYAN,_x,_y,_x,_y-longueur);
+        creerLigneC(grosseurTrait,ROSE,_x,_y,_x-longueur,_y);
     }
     
     public ArrayList getListeLigneC(){ 
@@ -67,4 +62,6 @@ public class Croix extends Forme{
     public Double getY() {
         return this.y;
     }
+
+
 }

@@ -16,15 +16,15 @@ import javafx.scene.shape.StrokeLineCap;
 
 public class Carre extends Forme{
     
-    int grosseurTrait;
-    int largeur;
-    ArrayList<Line>listeLigne;
+    private int grosseurTrait;
+    private int longueur;
+    private ArrayList<Line>listeLigne;
     
     public Carre(double _x,double _y, int _grosseurTrait, int _longueur){
         super(_x,_y);
         grosseurTrait=_grosseurTrait;
-        largeur=_longueur;
-        double n = largeur/2;
+        longueur=_longueur;
+        double n = longueur/2;
         listeLigne=new ArrayList<Line>();
         creerLigne(grosseurTrait,VIOLET,_x-n,_y+n,_x+n,_y+n);
         creerLigne(grosseurTrait,JAUNE,_x+n,_y+n,_x+n,_y-n);
@@ -69,4 +69,6 @@ public class Carre extends Forme{
     public Double getY() {
         return this.y;
     }
+
+
 }
