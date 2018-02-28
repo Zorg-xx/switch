@@ -2,8 +2,8 @@
 package ColorSwitchApp.modele;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
-import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape;
 
@@ -11,7 +11,7 @@ import javafx.scene.shape.Shape;
 public class Jeu {
     
     
-    private ArrayList<ArrayList<Shape>> obs;
+    private ArrayList<Forme> obs;
     private Balle ball;
     private Group root;
     private Double x;
@@ -39,29 +39,36 @@ public class Jeu {
     
     public void boucleObstacle(){
         
-        Double _y=-950.0;
-        obs.remove(0);
         Random rand=new Random();
         int nombre=rand.nextInt(3);
         switch(nombre){
             case 0:     
-            Rond r=new Rond(x,_y,90,10,95,84);
+            Rond r=new Rond(x,y,90,10,95,84);
             r.initRond(obs, root, -360, 5);
             break;
 
             case 1:
-            Carre c= new Carre(x,_y,10,100);
+            Carre c= new Carre(x,y,10,100);
             c.initCarre(obs, root, -360, 5);    
             break;
 
             case 2:
-            Croix cr= new Croix(175.0,_y,10,75);
+            Croix cr= new Croix(175.0,y,10,75);
             cr.initCroix(obs, root, 360, 7);
 
-            Croix cr2= new Croix(325.0,_y,10,75);
+            Croix cr2= new Croix(325.0,y,10,75);
             cr2.initCroix(obs, root, -360, 7);
             break;
         }
+        this.y=y-275.0;
+        if(obs.size()>9){
+            obs.remove(0);
+            obs.remove(1);
+            obs.remove(2);
+            obs.remove(3);
+            obs.remove(4);
+        }
+            
     }
     
   
@@ -90,10 +97,28 @@ public class Jeu {
                 cr2.initCroix(obs, root, -360, 7);
                 break;
             }
-            y=y-275.0;
+            this.y=y-275.0;
             
         } 
                 
+    }
+    
+    public void verifierCollision(){
+
+        for (Iterator it = obs.iterator(); it.hasNext();) {
+            ArrayList<Shape> f = (ArrayList<Shape>) it.next();     
+            for(Shape a: f){
+                Shape s = Shape.intersect(ball.getBalle(),a);
+                if(!(s.getLayoutBounds().getHeight()<=0)){ 
+                    if((ball.getCouleurBalle()==a.getStroke())){
+                        System.out.println("ok");
+                    }
+                    else{
+                        System.out.println("boom");
+                    }
+                }  
+            }
+        }      
     }
     
 }
