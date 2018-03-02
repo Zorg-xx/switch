@@ -1,5 +1,5 @@
 
-package ColorSwitchApp.modele;
+package modele;
 
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;

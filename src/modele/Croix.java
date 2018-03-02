@@ -1,5 +1,5 @@
 
-package ColorSwitchApp.modele;
+package modele;
 
 import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;

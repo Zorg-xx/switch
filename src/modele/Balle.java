@@ -1,4 +1,4 @@
-package ColorSwitchApp.modele;
+package modele;
 
 import javafx.geometry.Bounds;
 import javafx.scene.Group;

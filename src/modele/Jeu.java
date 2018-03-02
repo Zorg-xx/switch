@@ -1,9 +1,9 @@
-
-package ColorSwitchApp.modele;
+package modele;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape;
 
@@ -16,6 +16,7 @@ public class Jeu {
     private Group root;
     private Double x;
     private Double y;
+    private Timeline t;
     
     public Jeu(Group _root){
         
@@ -27,6 +28,11 @@ public class Jeu {
         initObstacle(5);
         
         ball=new Balle(root,240,600);
+        
+    }
+    
+    public Group getRoot(){
+        return root;
     }
     
     public ArrayList getObs(){
@@ -61,18 +67,13 @@ public class Jeu {
             break;
         }
         this.y=y-275.0;
-        if(obs.size()>9){
+        if(obs.size()>5){
             obs.remove(0);
-            obs.remove(1);
-            obs.remove(2);
-            obs.remove(3);
-            obs.remove(4);
         }
             
     }
     
   
- 
     private void initObstacle(int nbr){
         
         for(int i=0;i<nbr;i++){
