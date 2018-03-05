@@ -20,7 +20,7 @@ public class Jeu {
     private Timeline t;
     
     private Score sc;
-    //private Etoile e;
+    private Etoile e;
     
     public Jeu(Group _root){
         
@@ -35,7 +35,6 @@ public class Jeu {
         
         //essai score 
         sc = new Score();
-        //e = new Etoile ();
         
     }
 
@@ -43,9 +42,6 @@ public class Jeu {
         return sc;
     }
 
-    /*public Etoile getE() {
-        return e;
-    }*/
     
     public Group getRoot(){
         return root;
@@ -61,22 +57,18 @@ public class Jeu {
     
     public void boucleObstacle(){
         
-        Etoile e = new Etoile ();
+        
         Random rand=new Random();
         int nombre=rand.nextInt(3);
         switch(nombre){
             case 0:     
             Rond r=new Rond(x,y,90,10,95,84);
             r.initRond(obs, root, -360, 5);
-            
-            e.afficherEtoile(x-13,y-13,root);
             break;
 
             case 1:
             Carre c= new Carre(x,y,10,100);
-            c.initCarre(obs, root, -360, 5);    
-            
-            e.afficherEtoile(x-13,y-13,root);
+            c.initCarre(obs, root, -360, 5);      
             break;
 
             case 2:
@@ -85,11 +77,10 @@ public class Jeu {
 
             Croix cr2= new Croix(325.0,y,10,75);
             cr2.initCroix(obs, root, -360, 7);
-            
-            e.afficherEtoile(x-13,y-13,root);
             break;
         }
-        
+        e = new Etoile (x,y);
+        e.initEtoile(root, -360, 7);
         this.y=y-275.0;
         if(obs.size()>5){
             obs.remove(0);
@@ -99,11 +90,7 @@ public class Jeu {
     private void afficherScore(Group root){
         sc.afficherScore(root);
     }
-    
-    /*private void afficherEtoile(double _x, double _y){
-        e.afficherEtoile(_x, _y);
-    }*/
-    
+
     
     private void initObstacle(int nbr){
         
@@ -130,11 +117,10 @@ public class Jeu {
                 cr2.initCroix(obs, root, -360, 7);
                 break;
             }
-            Etoile e = new Etoile ();
-            e.afficherEtoile(x-13,y-13,root);
-            //sc.afficherScore(root);
+           
             this.y=y-275.0;
-            
+            e = new Etoile (x,y);
+            e.initEtoile(root, -360, 7);
         } 
                 
     }
@@ -149,10 +135,10 @@ public class Jeu {
                     if((ball.getCouleurBalle()==a.getStroke())){
                         System.out.println("ok");
                     }
-                    /*else if(a.){ si a est une etoile
+                    /*else if(e.)){ 
                         System.out.println("point");
-                        sc = sc.ajouterPoint();
-                        e.setVisible(false);
+                        //sc = sc.ajouterPoint();
+                        //e.setVisible(false);
                     }*/
                     else{
                         System.out.println("boom");
