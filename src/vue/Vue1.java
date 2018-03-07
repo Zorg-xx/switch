@@ -22,7 +22,7 @@ public class Vue1 {
     Group group;
     Scene scene;
     
-    ArrayList<ArrayList<Shape>> obs;
+    ArrayList<Shape> obs;
     
     public Vue1(Stage ps){
         
@@ -49,29 +49,33 @@ public class Vue1 {
       
       
       Rond r11=new Rond(200.0,63.0,26,9,90,75);
+      //r11.initRond(obs, group, -360, 10);
       Rond r12=new Rond(299.0,63.0,26,9,90,75);
-       
+      //r11.initRond(obs, group, 360, 10);
        
        
        Polygon polygon = new Polygon();
        polygon.getPoints().addAll(new Double[]{
-        225.0, 225.0,
-        265.0, 250.0,
-        225.0, 275.0 });
+        225.0, 240.0,
+        265.0, 265.0,
+        225.0, 290.0 });
        polygon.setFill(Color.WHITE);
        polygon.setId("start");
        
        Circle circle=new Circle();
        circle.setCenterX(235.0);
-       circle.setCenterY(250.0);
+       circle.setCenterY(265.0);
        circle.setRadius(50.0);
        circle.setFill(Color.BLACK);
        circle.setId("start");
        
        
-       Rond r1=new Rond(235.0,250.0,60,9,90,83);
-       Rond r2=new Rond(235.0,250.0,70,9,90,83);
-       Rond r3=new Rond(235.0,250.0,80,9,90,84);
+       Rond r1=new Rond(235.0,265.0,60,9,90,83);
+       r1.initRond(obs, group, -360, 5);
+       Rond r2=new Rond(235.0,265.0,70,9,90,83);
+       r2.initRond(obs, group, 360, 7);
+       Rond r3=new Rond(235.0,265.0,80,9,90,84);
+       r3.initRond(obs, group, -360, 10);
        
        ControleurChangeVue ccv=new ControleurChangeVue(ps);
        polygon.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
@@ -91,30 +95,11 @@ public class Vue1 {
             r12.tourne((Arc)a,360,10);
             group.getChildren().add((Arc)a);
         }
-       
-       
+        
+              
        group.getChildren().add(circle);
        group.getChildren().add(polygon);
-       
-       ArrayList liste1 = r1.getListeArc();
-        for(Object a: liste1){
-            r1.tourne((Arc)a,-360,5);
-            group.getChildren().add((Arc)a);
-        }
-        
-        ArrayList liste2 = r2.getListeArc();
-        for(Object a: liste2){
-            r2.tourne((Arc)a,360,7);
-            group.getChildren().add((Arc)a);
-        }
-        
-        ArrayList liste3 = r3.getListeArc();
-        for(Object a: liste3){
-            r3.tourne((Arc)a,-360,9);
-            group.getChildren().add((Arc)a);
-        }
-
-        
+         
        ps.setScene(scene);
       
     }

@@ -31,8 +31,9 @@ public class Croix extends Forme{
     }
     
     public void initCroix(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
-        obs.add(listeLigneC);
+        //obs.add(listeLigneC);
         for(Object a: listeLigneC){
+            obs.add(a);
             this.tourne((Line)a, sensRotation,vitesseRotation);
             group.getChildren().add((Line)a);
         }
@@ -47,7 +48,7 @@ public class Croix extends Forme{
             .fill(null)
             .stroke(couleur)
             .strokeWidth(grosseurTrait)
-            .strokeLineCap(StrokeLineCap.ROUND)    
+            .strokeLineCap(StrokeLineCap.ROUND)   
             .build();
         listeLigneC.add(l);
         return l;

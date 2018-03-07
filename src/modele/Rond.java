@@ -59,8 +59,9 @@ public class Rond extends Forme{
     }
     
     public void initRond(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
-        obs.add(listeArc);
+        //obs.add(listeArc);
         for(Object a: listeArc){
+            obs.add(a);
             this.tourne((Arc)a, sensRotation,vitesseRotation);
             group.getChildren().add((Arc)a);
         }

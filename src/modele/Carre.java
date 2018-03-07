@@ -37,8 +37,9 @@ public class Carre extends Forme{
     }
     
     public void initCarre(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
-        obs.add(listeLigne);
+        //obs.add(listeLigne);
         for(Object a: listeLigne){
+            obs.add(a);
             this.tourne((Line)a, sensRotation,vitesseRotation);
             group.getChildren().add((Line)a);
         }

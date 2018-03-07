@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.Random;
 import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -33,6 +34,25 @@ public class Balle{
     
     public Color getCouleurBalle(){
         return couleur;
+    }
+    
+    public void setRandomCouleur(){
+        Random rand=new Random();
+        int i=rand.nextInt(4);
+        switch(i){
+            case(0):
+                balle.setFill(Color.PURPLE);
+                break;
+            case(1):
+                balle.setFill(Color.CYAN);
+                break;
+            case(2):
+                balle.setFill(Color.DEEPPINK);
+                break;
+            case(3):
+                balle.setFill(Color.YELLOW);   
+                break;
+        }
     }
     
     public void setCouleurBalle(Color c){
