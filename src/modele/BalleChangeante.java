@@ -19,15 +19,17 @@ public class BalleChangeante extends Forme{
     private Circle bouleC;
     private Stop[]listeCouleur;
     private LinearGradient lg;
+    
 
-    public BalleChangeante(Double _x, Double _y) {
+    public BalleChangeante(Double _x, Double _y,String id) {
         
         super(_x, _y);
         listeCouleur=new Stop[]{ new Stop(0,VIOLET), new Stop(1,CYAN), new Stop(2,JAUNE), new Stop(3,ROSE)};
         lg=new LinearGradient(0,0,0,1,true,CycleMethod.NO_CYCLE,listeCouleur);
         bouleC=new Circle(10,lg);
         bouleC.relocate(_x-12, _y);
-        bouleC.setId("changercouleur");
+        bouleC.setId(id);
+        
     }
     
     public void initBalleC(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
@@ -36,8 +38,7 @@ public class BalleChangeante extends Forme{
         //this.tourne(bouleC, sensRotation, vitesseRotation);
         group.getChildren().add(bouleC);
     }
-    
-
+        
     @Override
     public Double getY() {
         return this.y; 
@@ -46,8 +47,5 @@ public class BalleChangeante extends Forme{
     @Override
     public Shape impl_configShape() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
+    }    
 }

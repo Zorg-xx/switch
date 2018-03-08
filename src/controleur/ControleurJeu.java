@@ -61,8 +61,11 @@ public class ControleurJeu implements EventHandler{
                 break;
             case 2:
                 System.out.println("changerCouleur");
-                break;    
+                break; 
             case 3:
+                System.out.println("croix");
+                break;
+            case 4:
                 j.finDeJeu(s);
                 v.stop();
                 System.out.println("boom");
@@ -82,8 +85,11 @@ public class ControleurJeu implements EventHandler{
                 break;
             case 2:
                 System.out.println("changerCouleur");
-                break;    
+                break;
             case 3:
+                System.out.println("croix");
+                break;               
+            case 4:
                 j.finDeJeu(s);
                 v.stop();
                 System.out.println("boom");
