@@ -7,6 +7,8 @@ import java.util.Random;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.shape.Shape;
+import javafx.stage.Stage;
+import vue.Vue3;
 
 
 public class Jeu {
@@ -56,8 +58,7 @@ public class Jeu {
     }
     
     public void boucleObstacle(){
-        
-        
+                
         Random rand=new Random();
         int nombre=rand.nextInt(3);
         switch(nombre){
@@ -79,6 +80,7 @@ public class Jeu {
             cr2.initCroix(obs, root, -360, 7);
             break;
         }
+        
         e = new Etoile (x,y);
         e.initEtoile(root, -360, 7);
         this.y=y-275.0;
@@ -87,11 +89,7 @@ public class Jeu {
         } 
     }
     
-    private void afficherScore(Group root){
-        sc.afficherScore(root);
-    }
-
-    
+  
     private void initObstacle(int nbr){
         
         for(int i=0;i<nbr;i++){
@@ -117,7 +115,7 @@ public class Jeu {
                 cr2.initCroix(obs, root, -360, 7);
                 break;
             }
-           
+            
             this.y=y-275.0;
             e = new Etoile (x,y);
             e.initEtoile(root, -360, 7);
@@ -135,13 +133,14 @@ public class Jeu {
                     if((ball.getCouleurBalle()==a.getStroke())){
                         System.out.println("ok");
                     }
-                    /*else if(e.)){ 
+                    else if(s.equals(e)){ //si le shape est une etoile=>ne fonctionne pas!!
                         System.out.println("point");
                         //sc = sc.ajouterPoint();
                         //e.setVisible(false);
-                    }*/
+                    }
                     else{
-                        System.out.println("boom");
+                        //System.out.println("boom");
+                        Vue3 v = new Vue3((Stage)this.root.getScene().getWindow());
                     }
                 }  
             }
