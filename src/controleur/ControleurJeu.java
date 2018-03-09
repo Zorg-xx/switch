@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import vue.Vue2;
 
@@ -60,9 +61,14 @@ public class ControleurJeu implements EventHandler{
                 System.out.println("etoile");
                 break;
             case 2:
+                j.getBalleJ().setRandomCouleur();
                 System.out.println("changerCouleur");
                 break; 
             case 3:
+                if(j.getBalleJ().getCouleurBalle()==Color.PURPLE)
+                    j.getBalleJ().setCouleurBalle(Color.CYAN);
+                else
+                    j.getBalleJ().setCouleurBalle(Color.PURPLE);
                 System.out.println("croix");
                 break;
             case 4:
@@ -84,9 +90,14 @@ public class ControleurJeu implements EventHandler{
                 System.out.println("etoile");
                 break;
             case 2:
+                j.getBalleJ().setRandomCouleur();
                 System.out.println("changerCouleur");
                 break;
             case 3:
+                if(j.getBalleJ().getCouleurBalle()==Color.PURPLE)
+                    j.getBalleJ().setCouleurBalle(Color.CYAN);
+                else
+                    j.getBalleJ().setCouleurBalle(Color.PURPLE);
                 System.out.println("croix");
                 break;               
             case 4:

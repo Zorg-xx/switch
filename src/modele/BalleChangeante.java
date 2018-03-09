@@ -4,13 +4,9 @@ package modele;
 import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
 import javafx.scene.Group;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
-import javafx.scene.shape.Arc;
-import javafx.scene.shape.ArcBuilder;
-import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import static modele.Forme.VIOLET;
 

@@ -41,21 +41,26 @@ public class Balle{
         int i=rand.nextInt(4);
         switch(i){
             case(0):
+                couleur=Color.PURPLE;
                 balle.setFill(Color.PURPLE);
                 break;
             case(1):
+                couleur=Color.CYAN;
                 balle.setFill(Color.CYAN);
                 break;
             case(2):
+                couleur=Color.DEEPPINK;
                 balle.setFill(Color.DEEPPINK);
                 break;
             case(3):
+                couleur=Color.YELLOW;
                 balle.setFill(Color.YELLOW);   
                 break;
         }
     }
     
     public void setCouleurBalle(Color c){
+        couleur=c;
         balle.setFill(c);
     }
     

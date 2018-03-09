@@ -30,6 +30,7 @@ public class Jeu {
         
         root=_root;
         obs=new ArrayList();
+         
         
         initObstacle(5);
 
@@ -125,7 +126,7 @@ public class Jeu {
             break;     
         }
         this.y=y-275.0;
-        if(obs.size()>12){
+        if(obs.size()>10){
             obs.remove(0);
         }
         Random rand1=new Random();
@@ -201,6 +202,8 @@ public class Jeu {
             Shape s = Shape.intersect(ball.getBalle(),a);
             if(!(s.getLayoutBounds().getHeight()<=0)){
                 if(a.isVisible()){
+                    System.out.println("balle "+ball.getCouleurBalle());
+                    System.out.println("objet "+a.getStroke());
                     if((ball.getCouleurBalle()==a.getStroke())){
                         retour=0;                     
                     }
