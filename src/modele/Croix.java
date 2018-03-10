@@ -1,7 +1,6 @@
 
 package modele;
 
-import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -26,9 +25,7 @@ public class Croix extends Forme{
         creerLigneC(grosseurTrait,ROSE,_x,_y,_x-longueur,_y);
     }
     
-    public ArrayList getListeLigneC(){ 
-        return listeLigneC;
-    }
+
     
     public void initCroix(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
         //obs.add(listeLigneC);
@@ -53,16 +50,8 @@ public class Croix extends Forme{
         listeLigneC.add(l);
         return l;
     }
-
-    @Override
-    public Shape impl_configShape() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public Double getY() {
         return this.y;
     }
-
-
 }

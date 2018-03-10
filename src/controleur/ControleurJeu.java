@@ -40,8 +40,8 @@ public class ControleurJeu implements EventHandler{
         if(j.getBalleJ().getY()<=600){
             j.getBalleJ().setY(j.getBalleJ().getY()+1);
             if(j.getBalleJ().getYb()>650){
-                j.finDeJeu(s);
                 v.stop();
+                j.finDeJeu(s);
                 System.out.println("fin");
             }    
         }                                
@@ -53,35 +53,17 @@ public class ControleurJeu implements EventHandler{
                 j.boucleObstacle();
             }                  
         }
-        switch(j.verifierCollision()){
-            case 0:
-                System.out.println("ok");
-                break;
-            case 1:
-                System.out.println("etoile");
-                break;
-            case 2:
-                j.getBalleJ().setRandomCouleur();
-                System.out.println("changerCouleur");
-                break; 
-            case 3:
-                if(j.getBalleJ().getCouleurBalle()==Color.PURPLE)
-                    j.getBalleJ().setCouleurBalle(Color.CYAN);
-                else
-                    j.getBalleJ().setCouleurBalle(Color.PURPLE);
-                System.out.println("croix");
-                break;
-            case 4:
-                j.finDeJeu(s);
-                v.stop();
-                System.out.println("boom");
-                break;
-        }
+        resultat();
     }
     
     private void handleMouse(MouseEvent e){
         
         j.getBalleJ().setY(j.getBalleJ().getY()-35);
+        resultat();
+    }
+    
+    private void resultat(){
+        
         switch(j.verifierCollision()){
             case 0:
                 System.out.println("ok");
@@ -101,10 +83,11 @@ public class ControleurJeu implements EventHandler{
                 System.out.println("croix");
                 break;               
             case 4:
-                j.finDeJeu(s);
                 v.stop();
+                j.finDeJeu(s);
                 System.out.println("boom");
                 break;
         } 
+        
     }
 }

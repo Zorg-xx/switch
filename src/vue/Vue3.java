@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import modele.Rond;
 
 
-public class Vue3 {
+public class Vue3 extends Effet{
     
     private Label labelFin;
     private Group root;
@@ -39,8 +39,11 @@ public class Vue3 {
         labelFin.setFont(Font.font("ARIAL", 25));
         labelFin.setLayoutX(185.0);
         labelFin.setLayoutY(200.0);
+        
 
         root.getChildren().add(labelFin);
+        
+
         
         Rond r1=new Rond(0.0,0.0,60,9,90,83);
         r1.initRond(obs, root, -360, 5);
@@ -83,7 +86,7 @@ public class Vue3 {
         arc.setStroke(Color.WHITE);
         arc.setFill(null);
         arc.setStrokeWidth(4);
-        
+                
         Polygon p=new Polygon();
         p.getPoints().addAll(new Double[]{
             0.0, 0.0,
@@ -103,6 +106,7 @@ public class Vue3 {
         rejouerB.setId("rejouer");
         
         root.getChildren().add(rejouerB);
+ 
     }
     
 }

@@ -12,7 +12,7 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 
-public abstract class Forme extends Shape{
+public abstract class Forme {
     
     protected final static Color VIOLET=Color.PURPLE;
     protected final static Color JAUNE=Color.YELLOW;
@@ -44,6 +44,7 @@ public abstract class Forme extends Shape{
         rotationAnimation.setCycleCount(Animation.INDEFINITE);
         rotationAnimation.setAutoReverse(false);
         rotationAnimation.play();
-        
     }
+    
+    
 }

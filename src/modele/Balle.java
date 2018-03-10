@@ -17,6 +17,9 @@ public class Balle{
         couleur=Color.PURPLE;
         balle=new Circle(10,couleur);
         balle.relocate(_x, _y);
+        
+        
+        
         group.getChildren().add(balle);
     }
     

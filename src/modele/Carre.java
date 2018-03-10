@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package modele;
 
-import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -32,9 +27,6 @@ public class Carre extends Forme{
         creerLigne(grosseurTrait,ROSE,_x-n,_y-n,_x-n,_y+n);
     }
     
-    public ArrayList getListeLigne(){ 
-        return listeLigne;
-    }
     
     public void initCarre(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
         //obs.add(listeLigne);
@@ -59,11 +51,6 @@ public class Carre extends Forme{
                 .build();
         listeLigne.add(l);
         return l;
-    }
-
-    @Override
-    public Shape impl_configShape() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

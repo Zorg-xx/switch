@@ -38,11 +38,5 @@ public class Etoile extends Forme{
     @Override
     public Double getY() {
         return this.y;
-    }
-
-    @Override
-    public Shape impl_configShape() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }    
 }

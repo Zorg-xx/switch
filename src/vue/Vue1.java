@@ -10,14 +10,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 
-public class Vue1 {
+public class Vue1 extends Effet{
     
     Group group;
     Scene scene;
@@ -31,9 +30,7 @@ public class Vue1 {
        scene.setFill(Color.BLACK);
        
        obs=new ArrayList();
-
-       
-       
+   
       Image image = new Image("file:src/vue/cw.png");  
       
       ImageView imagev = new ImageView(image); 
@@ -47,13 +44,8 @@ public class Vue1 {
       imagev.setSmooth(true);
       imagev.setCache(true);
       
+      group.getChildren().add(imagev);
       
-      Rond r11=new Rond(200.0,63.0,26,9,90,75);
-      //r11.initRond(obs, group, -360, 10);
-      Rond r12=new Rond(299.0,63.0,26,9,90,75);
-      //r11.initRond(obs, group, 360, 10);
-       
-       
        Polygon polygon = new Polygon();
        polygon.getPoints().addAll(new Double[]{
         225.0, 240.0,
@@ -62,14 +54,14 @@ public class Vue1 {
        polygon.setFill(Color.WHITE);
        polygon.setId("start");
        
+   
        Circle circle=new Circle();
        circle.setCenterX(235.0);
        circle.setCenterY(265.0);
        circle.setRadius(50.0);
        circle.setFill(Color.BLACK);
        circle.setId("start");
-       
-       
+   
        Rond r1=new Rond(235.0,265.0,60,9,90,83);
        r1.initRond(obs, group, -360, 5);
        Rond r2=new Rond(235.0,265.0,70,9,90,83);
@@ -80,22 +72,11 @@ public class Vue1 {
        ControleurChangeVue ccv=new ControleurChangeVue(ps);
        polygon.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
        circle.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
-      
-       
-       group.getChildren().add(imagev);
-       
-        ArrayList liste11 = r11.getListeArc();
-        for(Object a: liste11){
-            r11.tourne((Arc)a,-360,10);
-            group.getChildren().add((Arc)a);
-        }
-        
-        ArrayList liste12 = r12.getListeArc();
-        for(Object a: liste12){
-            r12.tourne((Arc)a,360,10);
-            group.getChildren().add((Arc)a);
-        }
-        
+ 
+       Rond r11=new Rond(200.0,63.0,26,9,90,75);
+       r11.initRond(obs, group, -360, 10);
+       Rond r12=new Rond(299.0,63.0,26,9,90,75);
+       r12.initRond(obs, group, 360, 10);
               
        group.getChildren().add(circle);
        group.getChildren().add(polygon);

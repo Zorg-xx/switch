@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-public class Vue2 {
+public class Vue2 extends Effet{
     
     private Group root;
     private Scene scene;
@@ -40,7 +40,9 @@ public class Vue2 {
 
         timeline = new Timeline(new KeyFrame(Duration.millis(20),cj));
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();  
+        timeline.play();
+        
+        this.effet(root);
         
     }
     public void stop(){

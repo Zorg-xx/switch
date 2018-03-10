@@ -1,7 +1,6 @@
 
 package modele;
 
-import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -54,9 +53,6 @@ public class Rond extends Forme{
         creerArc(radius,grosseurTrait,ROSE,angleDepart+(90*3),longueurArc);
     }
     
-    public ArrayList getListeArc(){
-        return listeArc;
-    }
     
     public void initRond(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
         //obs.add(listeArc);
@@ -85,13 +81,9 @@ public class Rond extends Forme{
     }
 
     @Override
-    public Shape impl_configShape() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public Double getY() {
         return this.y;
     }
+   
 
 }

@@ -1,7 +1,7 @@
 
 package modele;
 
-import com.sun.javafx.geom.Shape;
+ 
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.paint.CycleMethod;
@@ -26,6 +26,7 @@ public class BalleChangeante extends Forme{
         bouleC.relocate(_x-12, _y);
         bouleC.setId(id);
         
+        
     }
     
     public void initBalleC(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
@@ -38,10 +39,5 @@ public class BalleChangeante extends Forme{
     @Override
     public Double getY() {
         return this.y; 
-    }
-
-    @Override
-    public Shape impl_configShape() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
+    }   
 }
