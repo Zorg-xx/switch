@@ -18,14 +18,14 @@ public class ControleurJeu implements EventHandler{
     private Vue2 v;
     private Stage s;
     private boolean monte;
-    private double t;
+    private double temps;
     
     public ControleurJeu(Jeu _j,Vue2 _v,Stage _s){
         j=_j;
         v=_v;
         s=_s;
         monte=true;
-        t=2;
+        temps=2.5;
     }
     
     @Override
@@ -41,26 +41,26 @@ public class ControleurJeu implements EventHandler{
 
     
     private void handleEvent(ActionEvent event) {
-        if(t<=0){
+        if(temps<=0.5){
         	monte=false;
         }
         
     	if(!monte){
             if(j.getBalleJ().getY()<=600){
-                j.getBalleJ().setY(j.getBalleJ().getY()+ 0.5*2*t*t);
+                j.getBalleJ().setY(j.getBalleJ().getY()+ 0.5*2*temps*temps);
                 if(j.getBalleJ().getYb()>650){
                     v.stop();
                     j.finDeJeu(s);
                     System.out.println("fin");
                 }    
             }
-            t+=0.1;
+            temps+=0.15;
     		
     	}else{
-    		if(t<=0)
+    		if(temps<=0)
     			monte=false;
-    		j.getBalleJ().setY(j.getBalleJ().getY()- 0.5*2*t*t);
-    		t-=0.1;
+    		j.getBalleJ().setY(j.getBalleJ().getY()- 0.5*2*temps*temps);
+    		temps-=0.15;
     	}
     	
     	
@@ -81,7 +81,7 @@ public class ControleurJeu implements EventHandler{
     
     private void handleMouse(MouseEvent e){
     	monte=true;
-    	t=2;
+    	temps=2.5;
 
     }
     
