@@ -1,6 +1,7 @@
 package controleur;
 
 import modele.Jeu;
+
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -16,11 +17,15 @@ public class ControleurJeu implements EventHandler{
     private Jeu j;
     private Vue2 v;
     private Stage s;
+    private boolean monte;
+    private double t;
     
     public ControleurJeu(Jeu _j,Vue2 _v,Stage _s){
         j=_j;
         v=_v;
         s=_s;
+        monte=true;
+        t=2;
     }
     
     @Override
@@ -36,15 +41,30 @@ public class ControleurJeu implements EventHandler{
 
     
     private void handleEvent(ActionEvent event) {
+        if(t<=0){
+        	monte=false;
+        }
         
-        if(j.getBalleJ().getY()<=600){
-            j.getBalleJ().setY(j.getBalleJ().getY()+1);
-            if(j.getBalleJ().getYb()>650){
-                v.stop();
-                j.finDeJeu(s);
-                System.out.println("fin");
-            }    
-        }                                
+    	if(!monte){
+            if(j.getBalleJ().getY()<=600){
+                j.getBalleJ().setY(j.getBalleJ().getY()+ 0.5*2*t*t);
+                if(j.getBalleJ().getYb()>650){
+                    v.stop();
+                    j.finDeJeu(s);
+                    System.out.println("fin");
+                }    
+            }
+            t+=0.1;
+    		
+    	}else{
+    		if(t<=0)
+    			monte=false;
+    		j.getBalleJ().setY(j.getBalleJ().getY()- 0.5*2*t*t);
+    		t-=0.1;
+    	}
+    	
+    	
+    	
         if(/*primaryStage.getMaxHeight()/2*/700.0/2>j.getBalleJ().getYb()){
             j.getRoot().setLayoutY(j.getRoot().getLayoutY()+1);
             j.setLabelScore();
@@ -53,13 +73,16 @@ public class ControleurJeu implements EventHandler{
                 j.boucleObstacle();
             }                  
         }
+    	
+                             
+
         resultat();
     }
     
     private void handleMouse(MouseEvent e){
-        
-        j.getBalleJ().setY(j.getBalleJ().getY()-35);
-        resultat();
+    	monte=true;
+    	t=2;
+
     }
     
     private void resultat(){
