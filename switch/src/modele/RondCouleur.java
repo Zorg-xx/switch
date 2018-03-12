@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modele;
 
-import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -14,86 +8,92 @@ import javafx.scene.shape.ArcBuilder;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Polygon;
 
-/**
- *
- * @author Al
- */
-public class RondCouleur extends Forme{
+public class RondCouleur extends Rond{
     
-    protected final int RAYON = 10;
-    private final int EPAIS = RAYON+3;
+    private int radius;
+    private final int EPAIS = radius+2;
+    private ArrayList<Polygon> listePoly;
+    private ArrayList<Arc>listeArc;
     
-    public RondCouleur (double _x, double _y){
-        super(_x,_y);
+    public RondCouleur(Double _x, Double _y, int _radius, int _grosseurTrait, int _angleDepart, int _longueurArc) {
+        super(_x, _y, _radius, _grosseurTrait, _angleDepart, _longueurArc);
+        
+    }
+    
+    public int getRadius() {
+        return radius;
     }
 
-    private Arc creerArc (double _x, double _y, int angleDepart, double longueur, Color couleur){
-        Arc a = ArcBuilder.create()
-            .type(ArcType.OPEN)
-            .centerX(_x)
-            .centerY(_y)
-            .radiusX(RAYON)
-            .radiusY(RAYON)
-            .startAngle(angleDepart)
-            .length(longueur)
-            .fill(null)
-            .stroke(couleur)
-            .strokeWidth(5)
-            .build();
-        return a;
+    public ArrayList<Polygon> getListePoly() {
+        return listePoly;
     }
-     
+
+    @Override
+    public ArrayList<Arc> getListeArc() {
+        return listeArc;
+    }
     
-    public void initRondC (Group gp, double _x, double _y){
-        Arc a = creerArc (_x,_y,0,65.0,ROSE);
-        Arc a1 = creerArc (_x,_y,90,65.0,CYAN);
-        Arc a2 = creerArc (_x,_y,180,65.0,JAUNE);
-        Arc a3 = creerArc (_x,_y,270,65.0,VIOLET);
-        
+    public void initRondC (double _x, double _y, Group gp){
+        Arc a = creerArc (10,6,ROSE,90,85);
+        Arc a1 = creerArc (10,6,CYAN,90,85);
+        Arc a2 = creerArc (10,6,JAUNE,90,85);
+        Arc a3 = creerArc (10,6,VIOLET,90,85);
         gp.getChildren().addAll(a,a1,a2,a3);
-        creerPoly (gp,_x,_y);
+        creerPoly(_x,_y);
+        for (Object o : listePoly){
+            gp.getChildren().add((Polygon)o);
+        }
     }
     
-    private void creerPoly(Group gp,double _x, double _y) {
-        
+    private void creerPoly(double _x, double _y) {
         Polygon p = new Polygon () ;
         p.getPoints().addAll(new Double[]{
             _x, _y,
             _x+EPAIS, _y,
             _x, _y-EPAIS });
         p.setFill(ROSE);
-
+        listePoly.add(p);
+        
         Polygon p1 = new Polygon () ;
         p1.getPoints().addAll(new Double[]{
             _x, _y,
             _x-EPAIS, _y,
             _x, _y-EPAIS });
         p1.setFill(CYAN);    
-              
+        listePoly.add(p1);     
+        
         Polygon p2 = new Polygon () ;
         p2.getPoints().addAll(new Double[]{
             _x, _y,
             _x-EPAIS, _y,
             _x, _y+EPAIS });
         p2.setFill(JAUNE);
-
+        listePoly.add(p2);
+        
         Polygon p3 = new Polygon () ;
         p3.getPoints().addAll(new Double[]{
             _x, _y,
             _x+EPAIS, _y,
             _x, _y+EPAIS });
         p3.setFill(VIOLET);
-        gp.getChildren().addAll(p,p1,p2,p3);
+        listePoly.add(p3);
     }
 
-    @Override
-    public Double getY() {
-        return this.y;
-    }
-
-    @Override
-    public Shape impl_configShape() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private Arc creerArc(int radius,int grosseurTrait,Color couleur,int angleDepart,int longueurArc){
+        Arc a = ArcBuilder.create()
+            .type(ArcType.OPEN)
+            .centerX(x)
+            .centerY(y)
+            .radiusX(radius)
+            .radiusY(radius)
+            .startAngle(angleDepart)
+            .length(longueurArc)
+            .fill(null)
+            .stroke(couleur)
+            .strokeWidth(grosseurTrait)
+            .build();
+        listeArc.add(a);
+        return a;
     }
     
 }
