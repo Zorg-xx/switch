@@ -204,7 +204,7 @@ public class Jeu {
         int retour=-1;
         for(Shape a: obs){
             Shape s = Shape.intersect(ball.getBalle(),a);
-            if(!(s.getLayoutBounds().getHeight()<=0)){
+            if(!(s.getLayoutBounds().getHeight()<=5)){
             //if(ball.getBalle().intersects(ball.getBalle().sceneToLocal(a.localToScene(a.getBoundsInLocal())))){
                 if(a.isVisible()){
                     System.out.println("balle "+ball.getCouleurBalle());
