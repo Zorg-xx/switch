@@ -18,7 +18,8 @@ public class Balle{
         balle=new Circle(10,couleur);
         balle.relocate(_x, _y);
         
-        
+        this.setRandomCouleur();
+
         
         group.getChildren().add(balle);
     }

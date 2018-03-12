@@ -1,11 +1,12 @@
 
 package modele;
 
-import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
+import javafx.animation.FadeTransition;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
+import javafx.util.Duration;
 
 
 public class Etoile extends Forme{
@@ -38,5 +39,6 @@ public class Etoile extends Forme{
     @Override
     public Double getY() {
         return this.y;
-    }    
+    } 
+    
 }

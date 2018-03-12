@@ -2,6 +2,8 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -114,6 +116,7 @@ public class Jeu {
                 e2.initEtoile(obs,root, sensRotation, 5);
             break;
             
+            
             case 3:
                 Carre c1= new Carre(x,y,10,100);
                 c1.initCarre(obs, root, -(sensRotation), 7);
@@ -123,7 +126,8 @@ public class Jeu {
                 
                 Etoile e3=new Etoile(x,y);
                 e3.initEtoile(obs,root, sensRotation, 5);
-            break;     
+            break;   
+
         }
         this.y=y-275.0;
         if(obs.size()>10){
@@ -201,6 +205,7 @@ public class Jeu {
         for(Shape a: obs){
             Shape s = Shape.intersect(ball.getBalle(),a);
             if(!(s.getLayoutBounds().getHeight()<=0)){
+            //if(ball.getBalle().intersects(ball.getBalle().sceneToLocal(a.localToScene(a.getBoundsInLocal())))){
                 if(a.isVisible()){
                     System.out.println("balle "+ball.getCouleurBalle());
                     System.out.println("objet "+a.getStroke());
@@ -223,7 +228,7 @@ public class Jeu {
                     }
                     else{
                         if(!(a instanceof Polygon))
-                            retour=4;
+                           retour=4;  
                     }
                 }
             }  
@@ -234,6 +239,14 @@ public class Jeu {
     
     public void finDeJeu(Stage s){
         
+        
+        try {
+            Thread.sleep(450);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         Vue3 v3=new Vue3(s);
     }
+
 }

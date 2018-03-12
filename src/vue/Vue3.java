@@ -5,6 +5,7 @@ import controleur.ControleurChangeVue;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -15,6 +16,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modele.Rond;
+import static vue.Vue1.PLUSBEAU;
 
 
 public class Vue3 extends Effet{
@@ -24,6 +26,7 @@ public class Vue3 extends Effet{
     private Scene scene;
     private ArrayList obs;
     private Group rejouerB;
+    private Button bu;
     
     public Vue3(Stage ps){
         
@@ -57,11 +60,24 @@ public class Vue3 extends Effet{
         Rond r4=new Rond(0.0,660.0,60,9,90,83);
         r4.initRond(obs, root, 360, 15);
         
-
+        
         rejouer();
         
         ControleurChangeVue ccv=new ControleurChangeVue(ps);
         rejouerB.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
+        
+        if(PLUSBEAU)
+            this.effet(root);
+        
+        
+        bu=new Button();
+        bu.setLayoutX(50);
+        bu.setLayoutY(500);
+        bu.setText("retour vue1");
+        bu.setId("retourVue1");
+        bu.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
+       
+        root.getChildren().add(bu);
         
         
     }
@@ -106,7 +122,10 @@ public class Vue3 extends Effet{
         rejouerB.setId("rejouer");
         
         root.getChildren().add(rejouerB);
- 
+        
+        if(PLUSBEAU)
+            this.effet(root);
     }
+    
     
 }

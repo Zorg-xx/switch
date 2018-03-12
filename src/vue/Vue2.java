@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import static vue.Vue1.PLUSBEAU;
 
 
 public class Vue2 extends Effet{
@@ -42,7 +43,8 @@ public class Vue2 extends Effet{
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
         
-        this.effet(root);
+        if(PLUSBEAU)
+            this.effet(root);
         
     }
     public void stop(){

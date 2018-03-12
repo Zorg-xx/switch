@@ -11,6 +11,12 @@ import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
+/**
+ * Forme permet de fixer le pivot à toutes les formes du jeu
+ * ainsi que les couleurs de base.
+ * 
+ */
+
 
 public abstract class Forme {
     
@@ -27,12 +33,23 @@ public abstract class Forme {
         y=_y;
     }
     
+    /**
+     * @return la valeur Double Y. Utile pour le placement vertical des formes
+     * lors du scrolling
+     */
     
     public abstract Double getY();
    
     
-    //360 rotation horaire, -360 rotation anti-horaire
-    //vitesse 5
+    /**
+     * tourne permet la rotation des formes.
+     * 
+     * @param p de type Shape est la forme à faire tourner.
+     * @param sensRotation détermine le sens de rotation
+     * 360 pour un sens horaire et -360 pour un sens anti-horaire
+     * @param vitesse détermine la vitesse de rotation. Plus la valeur est grande, 
+     * plus c'est lent.
+     */
     public void tourne(Shape p, int sensRotation, int vitesse){
         final Rotate rotationTransform = new Rotate(0, x, y);
         p.getTransforms().add(rotationTransform);
