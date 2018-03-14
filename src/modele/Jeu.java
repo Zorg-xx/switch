@@ -22,6 +22,7 @@ public class Jeu {
     private Group root;
     private Double x;
     private Double y;
+    private int score =0;
     
     private Label labelScore;
     
@@ -41,7 +42,7 @@ public class Jeu {
         
         ball=new Balle(root,240,600);
         
-        labelScore=new Label("score : ");
+        labelScore=new Label("score : "+score);
         labelScore.setTextFill(Color.WHITE);
         labelScore.setFont(Font.font("ARIAL", 25));
 
@@ -68,6 +69,12 @@ public class Jeu {
     public void setLabelScore(){
         
         labelScore.setLayoutY(labelScore.getLayoutY()-1);
+    }
+    
+    public void setScoreplus1(){
+    	score+=1;
+    	labelScore.setText("score : "+score);
+    	System.out.println("po");
     }
     
     

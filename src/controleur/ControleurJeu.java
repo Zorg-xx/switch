@@ -122,6 +122,7 @@ public class ControleurJeu implements EventHandler{
                 break;
             case 1:
                 System.out.println("etoile");
+                j.setScoreplus1();
                 break;
             case 2:
                 j.getBalleJ().setRandomCouleur();
