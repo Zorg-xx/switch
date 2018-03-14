@@ -25,6 +25,8 @@ public class Jeu {
     
     private Label labelScore;
     
+    private Boolean godMode;
+    
     public Jeu(Group _root){
         
         x=250.0;
@@ -42,11 +44,20 @@ public class Jeu {
         labelScore=new Label("score : ");
         labelScore.setTextFill(Color.WHITE);
         labelScore.setFont(Font.font("ARIAL", 25));
-        
 
         root.getChildren().add(labelScore);
+        
+        godMode=false;
        
 
+    }
+    
+    public Boolean getGodMode(){
+        return godMode;
+    }
+    
+    public void setGodMode(Boolean _godMode){
+        godMode=_godMode;
     }
     
     public Label getLabelScore(){
@@ -205,7 +216,6 @@ public class Jeu {
         for(Shape a: obs){
             Shape s = Shape.intersect(ball.getBalle(),a);
             if(!(s.getLayoutBounds().getHeight()<=5)){
-            //if(ball.getBalle().intersects(ball.getBalle().sceneToLocal(a.localToScene(a.getBoundsInLocal())))){
                 if(a.isVisible()){
                     System.out.println("balle "+ball.getCouleurBalle());
                     System.out.println("objet "+a.getStroke());
@@ -239,13 +249,11 @@ public class Jeu {
     
     public void finDeJeu(Stage s){
         
-        
         try {
             Thread.sleep(450);
         } catch (InterruptedException ex) {
             Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         Vue3 v3=new Vue3(s);
     }
 

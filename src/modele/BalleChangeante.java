@@ -20,7 +20,7 @@ public class BalleChangeante extends Forme{
     public BalleChangeante(Double _x, Double _y,String id) {
         
         super(_x, _y);
-        listeCouleur=new Stop[]{ new Stop(0,VIOLET), new Stop(1,CYAN), new Stop(2,JAUNE), new Stop(3,ROSE)};
+        listeCouleur=new Stop[]{ new Stop(0,VIOLET), new Stop(0.5,CYAN), new Stop(1,JAUNE), new Stop(1.5,ROSE)};
         lg=new LinearGradient(0,0,0,1,true,CycleMethod.NO_CYCLE,listeCouleur);
         bouleC=new Circle(10,lg);
         bouleC.relocate(_x-12, _y);
