@@ -2,6 +2,7 @@
 package vue;
 
 import controleur.ControleurChangeVue;
+import java.sql.Connection;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import modele.MeilleurScore;
 import modele.Rond;
 import static vue.Vue1.PLUSBEAU;
 
@@ -31,6 +33,10 @@ public class Vue3 extends Effet{
     private ArrayList obs;
     private Group rejouerB;
     private Button bu;
+    
+    private int scoreFinal;
+    private MeilleurScore ms;
+    private String pseudo;
     
     public Vue3(Stage ps){
         
@@ -87,16 +93,16 @@ public class Vue3 extends Effet{
         Text text = new Text ();
         text.setText("Score");
         text.setFill(Color.WHITE);
-        text.setFont(Font.font("Comic sans MS",40));
+        text.setFont(Font.font("Arial",40));
         text.setX(175.0);
         text.setY(285.0);
         
         root.getChildren().add(text);
         
         Text score = new Text ();
-        score.setText(Integer.toString(25)); //il faut le changer par le score au moment ou le joueur a perdu
+        score.setText(Integer.toString(scoreFinal));
         score.setFill(Color.WHITE);
-        score.setFont(Font.font("Comic sans MS",30));
+        score.setFont(Font.font("Arial",30));
         score.setX(210.0);
         score.setY(332.0);
         
@@ -113,16 +119,21 @@ public class Vue3 extends Effet{
         Text text1 = new Text ();
         text1.setText("Meilleur Score");
         text1.setFill(Color.WHITE);
-        text1.setFont(Font.font("Comic sans MS",40));
+        text1.setFont(Font.font("Arial",40));
         text1.setX(115.0);
         text1.setY(385.0);
         
         root.getChildren().add(text1);
         
+        //insertion du meilleur score dans la bd
+        int  meilscor = ms.getMeilleurScore();
+        meilscor = ms.majMeilleurScore(scoreFinal);
+        ms.insert(pseudo, meilscor);
+        
         Text mscore = new Text ();
-        mscore.setText(Integer.toString(25)); //il faut le changer par le meilleur score du joueur
+        mscore.setText(Integer.toString(ms.majMeilleurScore(scoreFinal)));
         mscore.setFill(Color.WHITE);
-        mscore.setFont(Font.font("Comic sans MS",30));
+        mscore.setFont(Font.font("Arial",30));
         mscore.setX(210.0);
         mscore.setY(435.0);
         
@@ -133,14 +144,7 @@ public class Vue3 extends Effet{
         
         if(PLUSBEAU)
             this.effet(root);
-        
-        
-        /*Rectangle rectangle = new Rectangle ();
-        rectangle.setX(50);
-        rectangle.setY(450);
-        rectangle.setWidth(90);
-        rectangle.setHeight(80);
-        rectangle.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);*/
+       
         
         Polygon home = new Polygon();
         home.getPoints().addAll(new Double[]{
