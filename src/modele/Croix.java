@@ -1,6 +1,6 @@
+
 package modele;
 
-import com.sun.javafx.geom.Shape;
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -25,13 +25,12 @@ public class Croix extends Forme{
         creerLigneC(grosseurTrait,ROSE,_x,_y,_x-longueur,_y);
     }
     
-    public ArrayList getListeLigneC(){ 
-        return listeLigneC;
-    }
+
     
     public void initCroix(ArrayList obs ,Group group, int sensRotation, int vitesseRotation){
-        obs.add(listeLigneC);
+        //obs.add(listeLigneC);
         for(Object a: listeLigneC){
+            obs.add(a);
             this.tourne((Line)a, sensRotation,vitesseRotation);
             group.getChildren().add((Line)a);
         }
@@ -46,16 +45,13 @@ public class Croix extends Forme{
             .fill(null)
             .stroke(couleur)
             .strokeWidth(grosseurTrait)
-            .strokeLineCap(StrokeLineCap.ROUND)    
+            .strokeLineCap(StrokeLineCap.ROUND)   
             .build();
         listeLigneC.add(l);
         return l;
     }
-
     @Override
     public Double getY() {
         return this.y;
     }
-
-
 }

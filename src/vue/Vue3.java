@@ -47,13 +47,6 @@ public class Vue3 extends Effet{
         
         ps.setScene(scene);
         
-        /*labelFin=new Label("Game over");
-        labelFin.setTextFill(Color.WHITE);
-        labelFin.setFont(Font.font("ARIAL", 25));
-        labelFin.setLayoutX(185.0);
-        labelFin.setLayoutY(200.0);
-
-        root.getChildren().add(labelFin);*/
         
         Rond r1=new Rond(0.0,0.0,60,9,90,83);
         r1.initRond(obs, root, -360, 5);
@@ -168,15 +161,6 @@ public class Vue3 extends Effet{
         home.setId("home");
         home.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
         root.getChildren().add(home);
-        
-        /*bu=new Button();
-        bu.setLayoutX(50);
-        bu.setLayoutY(500);
-        bu.setText("retour vue1");
-        bu.setId("retourVue1");*/
-        bu.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
-       
-        root.getChildren().add(bu);
         
         
         
