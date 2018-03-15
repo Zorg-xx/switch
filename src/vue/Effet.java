@@ -1,4 +1,3 @@
-
 package vue;
 
 import javafx.scene.Group;

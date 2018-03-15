@@ -30,10 +30,14 @@ public class ControleurChangeVue implements EventHandler{
             if(((Circle) o).getId().equalsIgnoreCase("start")){
                 Vue2 v=new Vue2(ps);
             }
-        if(o instanceof Polygon)
+        if(o instanceof Polygon){
             if(((Polygon) o).getId().equalsIgnoreCase("start")){
                 Vue2 v=new Vue2(ps);
             }
+            if(((Polygon) o).getId().equalsIgnoreCase("home")){
+                Vue1 v=new Vue1(ps);
+            }
+        }
         if(o instanceof Group)
             if(((Group) o).getId().equalsIgnoreCase("rejouer")){
                 Vue2 v=new Vue2(ps);
@@ -46,9 +50,9 @@ public class ControleurChangeVue implements EventHandler{
                     PLUSBEAU=true;
                 Vue1 v=new Vue1(ps);
             }
-            else if(((Button)o).getId().equalsIgnoreCase("retourVue1")){
+            /*else if(((Button)o).getId().equalsIgnoreCase("retourVue1")){
                 Vue1 v=new Vue1(ps);
-            }
+            }*/
         }    
     }     
 }
