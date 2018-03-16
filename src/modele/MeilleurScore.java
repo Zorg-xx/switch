@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -21,6 +22,15 @@ import java.sql.SQLException;
 public class MeilleurScore {
     
     private int meilleurScore;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     
     public MeilleurScore(){
         meilleurScore = 0;
@@ -35,14 +45,16 @@ public class MeilleurScore {
     }
     
     public int majMeilleurScore(int scoreActuel){
-        if (scoreActuel > meilleurScore)
+        if (scoreActuel > meilleurScore){
             meilleurScore = scoreActuel;
+            insert(name, meilleurScore);
+        }
         return meilleurScore;
     }
     
     public void afficherMScore(Group gp) {
         Text msc = new Text();
-        msc.setText(Integer.toString(meilleurScore));
+        msc.setText(Integer.toString(maxiScore(this.name)));
         msc.setFill(WHITE);
         msc.setX(300);
         msc.setY(300);
@@ -75,6 +87,20 @@ public class MeilleurScore {
             System.out.println(e.getMessage());
         }
     }
+     
+     public int maxiScore (String name){
+         String req = "SELECT * from score where name = ? " + "and meilleurSc in (select max(meilleurSc) from score)" ;
+         int res = 0;
+         try(Connection con = this.connection();
+             PreparedStatement pstmt = con.prepareStatement(req)) {
+             pstmt.setString(1, name);
+             ResultSet ms  = pstmt.executeQuery();
+             res = ms.getInt(1);
+         }catch (SQLException e){
+             System.out.println(e.getMessage());
+         }
+         return res;
+     }
     
     
 }
