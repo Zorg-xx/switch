@@ -261,7 +261,7 @@ public class Jeu {
         } catch (InterruptedException ex) {
             Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Vue3 v3=new Vue3(s);
+        Vue3 v3=new Vue3(s,score);
     }
 
 }

@@ -50,24 +50,6 @@ public class Vue1 extends Effet{
 
         group.getChildren().add(label);
        
-       
-       
-   /*
-      Image image = new Image("file:src/vue/cw.png");  
-      
-      ImageView imagev = new ImageView(image); 
-      
-      imagev.setX(90); 
-      imagev.setY(25); 
-      
-      imagev.setImage(image);
-      imagev.setFitWidth(300);
-      imagev.setPreserveRatio(true);
-      imagev.setSmooth(true);
-      imagev.setCache(true);
-      
-      group.getChildren().add(imagev);
-      */
    
         Polygon polygon = new Polygon();
         polygon.getPoints().addAll(new Double[]{
