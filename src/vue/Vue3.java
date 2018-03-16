@@ -123,6 +123,7 @@ public class Vue3 extends Effet{
         meilscor = ms.majMeilleurScore(scoreFinal);
         ms.insert(pseudo, meilscor);
         
+        
         Text mscore = new Text ();
         mscore.setText(Integer.toString(ms.majMeilleurScore(scoreFinal)));
         mscore.setFill(Color.WHITE);
