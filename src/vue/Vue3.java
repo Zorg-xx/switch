@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import modele.MeilleurScore;
 import modele.Rond;
 import static vue.Vue1.PLUSBEAU;
 
@@ -31,6 +32,7 @@ public class Vue3 extends Effet{
     private Group rejouerB;
     
     private int scoreFinal;
+    private MeilleurScore ms;
 
     
     public Vue3(Stage ps){
@@ -112,11 +114,17 @@ public class Vue3 extends Effet{
         text1.setY(385.0);
         
         root.getChildren().add(text1);
-
-
+/*
+        //insertion du meilleur score dans la bd
+        ms.intiMS();
+        int  meilscor = ms.getMeilleurScore();
+        ms.majMeilleurScore(scoreFinal);
+        //ms.insert(pseudo, meilscor);
+         
         
         Text mscore = new Text ();
-
+        mscore.setText(Integer.toString(ms.majMeilleurScore(scoreFinal)));*/
+        Text mscore = new Text ();
         mscore.setFill(Color.WHITE);
         mscore.setFont(Font.font("Arial",30));
         mscore.setX(210.0);
