@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -34,6 +35,7 @@ public class Vue1 extends Effet{
     private Label label;
     private Spinner<String> choixDifficulte;
     public static String DIFFICULTE="normale";
+    private TextField pseudo;
     
     public Vue1(Stage ps){
         
@@ -52,6 +54,13 @@ public class Vue1 extends Effet{
         
         group.getChildren().add(label);
 
+        pseudo= new TextField("John Doe");
+        pseudo.setPrefWidth(100);
+        pseudo.setLayoutX(ps.getMaxWidth()/2-60);
+        pseudo.setStyle("-fx-text-inner-color: white;-fx-background-color: grey;-fx-alignment: center ;");
+        pseudo.setLayoutY(350);
+        System.out.println(pseudo.getPrefWidth());
+        group.getChildren().add(pseudo);
    
         Polygon polygon = new Polygon();
         polygon.getPoints().addAll(new Double[]{
