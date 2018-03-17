@@ -50,9 +50,6 @@ public class ControleurChangeVue implements EventHandler{
                     PLUSBEAU=true;
                 Vue1 v=new Vue1(ps);
             }
-            /*else if(((Button)o).getId().equalsIgnoreCase("retourVue1")){
-                Vue1 v=new Vue1(ps);
-            }*/
         }    
     }     
 }

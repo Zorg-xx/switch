@@ -5,13 +5,8 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.Group;
-import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import vue.Vue3;
 
 
 public class Jeu {
@@ -22,10 +17,7 @@ public class Jeu {
     private Group root;
     private Double x;
     private Double y;
-    private int score =0;
-    
-    private Label labelScore;
-    
+    private int score = 0;
     private Boolean godMode;
     
     public Jeu(Group _root){
@@ -35,19 +27,11 @@ public class Jeu {
         
         root=_root;
         obs=new ArrayList();
-         
-        
+      
         initObstacle(5);
-
-        
+    
         ball=new Balle(root,240,600);
-        
-        labelScore=new Label("score : "+score);
-        labelScore.setTextFill(Color.WHITE);
-        labelScore.setFont(Font.font("ARIAL", 25));
 
-        root.getChildren().add(labelScore);
-        
         godMode=false;
        
 
@@ -61,22 +45,13 @@ public class Jeu {
         godMode=_godMode;
     }
     
-    public Label getLabelScore(){
-        
-        return labelScore;
+    public int getScore(){
+        return score;
     }
     
-    public void setLabelScore(){
-        
-        labelScore.setLayoutY(labelScore.getLayoutY()-1);
-    }
-    
-    public void setScoreplus1(){
-    	score+=1;
-    	labelScore.setText("score : "+score);
-    	System.out.println("po");
-    }
-    
+   public void setScore(){
+       score++;
+   }
     
     public Group getRoot(){
         return root;
@@ -133,7 +108,6 @@ public class Jeu {
                 Etoile e2=new Etoile(x,y);
                 e2.initEtoile(obs,root, sensRotation, 5);
             break;
-            
             
             case 3:
                 Carre c1= new Carre(x,y,10,100);
@@ -254,14 +228,14 @@ public class Jeu {
     }
     
     
-    public void finDeJeu(Stage s){
+    public void finDeJeu(){
         
         try {
             Thread.sleep(450);
         } catch (InterruptedException ex) {
             Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Vue3 v3=new Vue3(s,score);
+        
     }
 
 }

@@ -3,16 +3,17 @@ package vue;
 
 import modele.Jeu;
 import controleur.ControleurJeu;
-import static javafx.animation.Animation.Status.STOPPED;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import static vue.Vue1.PLUSBEAU;
@@ -26,6 +27,8 @@ public class Vue2 extends Effet{
     private Timeline timeline;
     private Group pauseB;
     private Boolean pause;
+
+    private Label labelScore;
     
        
     public Vue2(Stage ps){
@@ -37,9 +40,7 @@ public class Vue2 extends Effet{
         j=new Jeu(root);
         
         ps.setScene(scene);
-        
-        creerPause();
-     
+
         ControleurJeu cj=new ControleurJeu(j,this,ps);
         
         scene.addEventHandler(MouseEvent.MOUSE_CLICKED, cj); 
@@ -51,10 +52,35 @@ public class Vue2 extends Effet{
         
         pause=false;
         
+        creerPause();
+        
         if(PLUSBEAU)
             this.effet(root);
         
         pauseB.setVisible(false);
+        
+        labelScore=new Label("score : 0");
+        labelScore.setTextFill(Color.WHITE);
+        labelScore.setFont(Font.font("ARIAL", 25));
+
+        root.getChildren().add(labelScore);
+        
+    }
+    
+    public Label getLabelScore(){
+        
+        return labelScore;
+    }
+    
+    public void setLabelScore(){
+        
+        labelScore.setLayoutY(labelScore.getLayoutY()-1);
+    }
+    
+    public void setScore(int score){
+        
+    	labelScore.setText("score : "+score);
+    	System.out.println("po");
     }
     
     public Boolean getPause(){

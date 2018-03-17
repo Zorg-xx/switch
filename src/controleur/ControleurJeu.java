@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import vue.Vue2;
+import vue.Vue3;
 
 
 
@@ -81,7 +82,8 @@ public class ControleurJeu implements EventHandler{
                 j.getBalleJ().setY(j.getBalleJ().getY()+ 0.5*2*temps*temps);
                 if(j.getBalleJ().getYb()>650){
                     v.stop();
-                    j.finDeJeu(s);
+                    j.finDeJeu();
+                    Vue3 v3=new Vue3(s);
                     System.out.println("fin");
                 }    
             }
@@ -94,7 +96,7 @@ public class ControleurJeu implements EventHandler{
     	}
         if(/*primaryStage.getMaxHeight()/2*/700.0/2>j.getBalleJ().getYb()){
             j.getRoot().setLayoutY(j.getRoot().getLayoutY()+1);
-            j.setLabelScore();
+            v.setLabelScore();
             v.setPauseB();
             if(j.getRoot().getLayoutY()%250<=0){
                 j.boucleObstacle();
@@ -122,7 +124,8 @@ public class ControleurJeu implements EventHandler{
                 break;
             case 1:
                 System.out.println("etoile");
-                j.setScoreplus1();
+                j.setScore();
+                v.setScore(j.getScore());
                 break;
             case 2:
                 j.getBalleJ().setRandomCouleur();
@@ -138,7 +141,8 @@ public class ControleurJeu implements EventHandler{
             case 4:
                 if(!j.getGodMode()){
                     v.stop();
-                    j.finDeJeu(s);
+                    j.finDeJeu();
+                    Vue3 v3=new Vue3(s);
                 }
                 System.out.println("boom");
                 break;

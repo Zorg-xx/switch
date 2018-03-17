@@ -44,12 +44,10 @@ public class Vue1 extends Effet{
         label.setFont(Font.font("ARIAL", 70));
         label.setLayoutX(110.0);
         label.setLayoutY(20.0);
-        
         label.setTextAlignment(TextAlignment.CENTER);
         
-
         group.getChildren().add(label);
-       
+
    
         Polygon polygon = new Polygon();
         polygon.getPoints().addAll(new Double[]{
@@ -77,7 +75,7 @@ public class Vue1 extends Effet{
         ControleurChangeVue ccv=new ControleurChangeVue(ps);
         polygon.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
         circle.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
- 
+        
         Rond r11=new Rond(200.0,63.0,26,9,90,75);
         r11.initRond(obs, group, -360, 10);
         Rond r12=new Rond(299.0,63.0,26,9,90,75);

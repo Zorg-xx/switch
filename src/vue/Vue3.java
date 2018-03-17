@@ -2,14 +2,11 @@
 package vue;
 
 import controleur.ControleurChangeVue;
-import java.sql.Connection;
+
 import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
@@ -19,24 +16,22 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import modele.MeilleurScore;
 import modele.Rond;
 import static vue.Vue1.PLUSBEAU;
 
 
 public class Vue3 extends Effet{
     
-    private Label labelFin;
+    private Label label;
     private Group root;
     private Scene scene;
     private ArrayList obs;
     private Group rejouerB;
-    private Button bu;
     
     private int scoreFinal;
-    private MeilleurScore ms;
-    private String pseudo;
+
     
     public Vue3(Stage ps){
         
@@ -46,7 +41,6 @@ public class Vue3 extends Effet{
         scene.setFill(Color.BLACK);
         
         ps.setScene(scene);
-        
         
         Rond r1=new Rond(0.0,0.0,60,9,90,83);
         r1.initRond(obs, root, -360, 5);
@@ -59,21 +53,22 @@ public class Vue3 extends Effet{
         
         Rond r4=new Rond(0.0,660.0,60,9,90,83);
         r4.initRond(obs, root, 360, 15);
+
+
         
+        Rond r11=new Rond(200.0,63.0,26,9,90,75);
+        r11.initRond(obs, root, -360, 10);
+        Rond r12=new Rond(299.0,63.0,26,9,90,75);
+        r12.initRond(obs, root, 360, 10);
         
-        rejouer();
+        label=new Label("C   L   R\nSWITCH");
+        label.setTextFill(Color.WHITE);
+        label.setFont(Font.font("ARIAL", 70));
+        label.setLayoutX(110.0);
+        label.setLayoutY(20.0);
+        label.setTextAlignment(TextAlignment.CENTER);
         
-        Image image = new Image("file:src/vue/cw.png");  
-        ImageView imagev = new ImageView(image); 
-        imagev.setX(90); 
-        imagev.setY(75);     
-        imagev.setImage(image);
-        imagev.setFitWidth(300);
-        imagev.setPreserveRatio(true);
-        imagev.setSmooth(true);
-        imagev.setCache(true);
-        
-        root.getChildren().add(imagev);
+        root.getChildren().add(label);
         
         Rectangle r = new Rectangle();
         r.setY(250.0);
@@ -117,21 +112,19 @@ public class Vue3 extends Effet{
         text1.setY(385.0);
         
         root.getChildren().add(text1);
-        
-        //insertion du meilleur score dans la bd
-        int  meilscor = ms.getMeilleurScore();
-        meilscor = ms.majMeilleurScore(scoreFinal);
-        ms.insert(pseudo, meilscor);
-        
+
+
         
         Text mscore = new Text ();
-        mscore.setText(Integer.toString(ms.majMeilleurScore(scoreFinal)));
+
         mscore.setFill(Color.WHITE);
         mscore.setFont(Font.font("Arial",30));
         mscore.setX(210.0);
         mscore.setY(435.0);
         
         root.getChildren().add(mscore);
+        
+        rejouer();
         
         ControleurChangeVue ccv=new ControleurChangeVue(ps);
         rejouerB.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
@@ -162,9 +155,6 @@ public class Vue3 extends Effet{
         home.setId("home");
         home.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
         root.getChildren().add(home);
-        
-        
-        
     }
     
     private void rejouer(){
