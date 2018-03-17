@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.scene.Group;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
+import static vue.Vue1.DIFFICULTE;
 
 
 public class Jeu {
@@ -19,6 +20,7 @@ public class Jeu {
     private Double y;
     private int score = 0;
     private Boolean godMode;
+    private String difficulte;
     
     public Jeu(Group _root){
         
@@ -33,8 +35,14 @@ public class Jeu {
         ball=new Balle(root,240,600);
 
         godMode=false;
+        
+        difficulte=DIFFICULTE;
        
 
+    }
+    
+    public String getDifficulte(){
+        return difficulte;
     }
     
     public Boolean getGodMode(){
@@ -50,7 +58,12 @@ public class Jeu {
     }
     
    public void setScore(){
-       score++;
+        if(difficulte.equalsIgnoreCase("facile"))
+            score=score+1;
+        else if(difficulte.equals("normale"))
+            score=score+2;
+        else
+            score=score+3;
    }
     
     public Group getRoot(){

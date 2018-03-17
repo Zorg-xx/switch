@@ -27,6 +27,11 @@ vitesse rotation plus l'entier est élevé, plus la vitesse est lente
 
 /**
  * Rond permet de construire un cercle en 4 arcs de couleurs différentes.
+ * @param radius radius du cercle.
+ * @param grosseurTrait determine l'épaisseur de l'arc.
+ * @param angleDepart determine le départ de l'arc.
+ * @param longueurArc determine la longueur de l'arc.
+ * @param listeArc permet de créer une liste d'arc pour la création du rond. Méthode initRond
  * 
  */
 

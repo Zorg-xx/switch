@@ -30,6 +30,8 @@ public class Vue2 extends Effet{
 
     private Label labelScore;
     
+    private int vitesse;
+    
        
     public Vue2(Stage ps){
         
@@ -45,8 +47,15 @@ public class Vue2 extends Effet{
         
         scene.addEventHandler(MouseEvent.MOUSE_CLICKED, cj); 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, cj);
+        
+        if(j.getDifficulte().equalsIgnoreCase("facile"))
+            vitesse=40;
+        else if(j.getDifficulte().equalsIgnoreCase("normale"))
+            vitesse=30;
+        else
+            vitesse=20;
 
-        timeline = new Timeline(new KeyFrame(Duration.millis(30),cj));
+        timeline = new Timeline(new KeyFrame(Duration.millis(vitesse),cj));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
         

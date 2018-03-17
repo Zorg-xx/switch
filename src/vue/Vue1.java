@@ -4,10 +4,16 @@ package vue;
 import modele.Rond;
 import controleur.ControleurChangeVue;
 import java.util.ArrayList;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -22,13 +28,12 @@ public class Vue1 extends Effet{
     
     Group group;
     Scene scene;
-    
     ArrayList<Shape> obs;
-    
     Button bu;
-    
     public static boolean PLUSBEAU=false;
-    private final Label label;
+    private Label label;
+    private Spinner<String> choixDifficulte;
+    public static String DIFFICULTE="normale";
     
     public Vue1(Stage ps){
         
@@ -37,7 +42,6 @@ public class Vue1 extends Effet{
         scene.setFill(Color.BLACK);
        
         obs=new ArrayList();
-       
        
         label=new Label("C   L   R\nSWITCH");
         label.setTextFill(Color.WHITE);
@@ -96,9 +100,32 @@ public class Vue1 extends Effet{
        
         bu.setId("3D");
         bu.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
-       
         group.getChildren().add(bu);
-       
+              
+        ObservableList<String> choix = FXCollections.observableArrayList(
+            "facile",
+            "normale",
+            "difficile"
+        );
+        choixDifficulte=new Spinner<String>();
+        SpinnerValueFactory<String> vf = new SpinnerValueFactory.ListSpinnerValueFactory<String>(choix);
+        vf.setValue("normale");
+        choixDifficulte.setValueFactory(vf);
+        choixDifficulte.setLayoutX(250);
+        choixDifficulte.setLayoutY(500);
+        choixDifficulte.getStyleClass().add(Spinner.STYLE_CLASS_SPLIT_ARROWS_HORIZONTAL);
+        choixDifficulte.setEditable(false);
+        
+        choixDifficulte.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                DIFFICULTE=newValue;
+                System.out.println(DIFFICULTE);
+            }
+        });
+
+        group.getChildren().add(choixDifficulte);
+        
         if(PLUSBEAU){
            this.effet(group);
            this.effet(polygon);
