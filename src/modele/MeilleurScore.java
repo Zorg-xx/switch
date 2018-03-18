@@ -47,14 +47,14 @@
     public void majMeilleurScore(int scoreActuel){
         if (scoreActuel > meilleurScore){
             meilleurScore = scoreActuel;
-            insert(this.name, meilleurScore); 
+        //    insert(this.name, meilleurScore); 
         }
     }
      
     public void afficherMScore(Group gp) {
         Text msc = new Text();
         msc.setText(Integer.toString(meilleurScore));
-        msc.setText(Integer.toString(maxiScore(this.name)));
+        //msc.setText(Integer.toString(maxiScore(this.name)));
         msc.setFill(WHITE);
         msc.setX(300);
         msc.setY(300);
@@ -75,9 +75,11 @@
         return conn;
     }
      
+    /*
     public void intiMS (){
         String req = "CREATE TABLE IF NOT EXISTS score (id integer PRIMARY KEY, name text, score integer);";
-        try(Connection con = this.connection();
+        try(
+            Connection con = this.connection();
             PreparedStatement pstmt = con.prepareStatement(req)) {
             pstmt.execute();
         }catch (SQLException e){
@@ -110,6 +112,6 @@
         }
         return res;
     }
-     
+     */
      
  }

@@ -19,6 +19,27 @@ import javafx.util.Duration;
 import static vue.Vue1.PLUSBEAU;
 
 
+/*
+*MVC pas trop respecté. A revoir la timeline et la pause.
+*
+*
+*/
+
+
+/**
+ * création de la Vue2; écran principal du jeu
+ * @param root
+ * @param scene
+ * @param j classe regroupant les composants du jeu
+ * @param timeline utile pour l'animation des formes et le refresh de l'écran
+ * @param pauseB group pour la création du bouton pause
+ * @param pause statut de la pause
+ * @param labelScore affichage du score actuel
+ * @param vitesse vitesse du refresh de la timeline
+ * 
+ */
+
+
 public class Vue2 extends Effet{
     
     private Group root;
@@ -27,26 +48,22 @@ public class Vue2 extends Effet{
     private Timeline timeline;
     private Group pauseB;
     private Boolean pause;
-
     private Label labelScore;
-    
     private int vitesse;
-    
        
     public Vue2(Stage ps){
         
         root=new Group();
         scene=new Scene(root,ps.getMaxWidth(),ps.getMaxHeight());
         scene.setFill(Color.BLACK);
+        ps.setScene(scene);
              
         j=new Jeu(root);
         
-        ps.setScene(scene);
-
         ControleurJeu cj=new ControleurJeu(j,this,ps);
-        
         scene.addEventHandler(MouseEvent.MOUSE_CLICKED, cj); 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, cj);
+        
         
         if(j.getDifficulte().equalsIgnoreCase("facile"))
             vitesse=40;
@@ -60,19 +77,16 @@ public class Vue2 extends Effet{
         timeline.play();
         
         pause=false;
-        
         creerPause();
-        
-        if(PLUSBEAU)
-            this.effet(root);
-        
         pauseB.setVisible(false);
         
         labelScore=new Label("score : 0");
         labelScore.setTextFill(Color.WHITE);
         labelScore.setFont(Font.font("ARIAL", 25));
-
         root.getChildren().add(labelScore);
+        
+        if(PLUSBEAU)
+            this.effet(root);
         
     }
     

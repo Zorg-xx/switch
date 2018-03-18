@@ -133,14 +133,10 @@ public class Vue3 extends Effet{
         root.getChildren().add(mscore);
         
         rejouer();
-        
         ControleurChangeVue ccv=new ControleurChangeVue(ps);
         rejouerB.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
         
-        if(PLUSBEAU)
-            this.effet(root);
-       
-        
+
         Polygon home = new Polygon();
         home.getPoints().addAll(new Double[]{
             90.0,  450.0,
@@ -163,6 +159,9 @@ public class Vue3 extends Effet{
         home.setId("home");
         home.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
         root.getChildren().add(home);
+        
+        if(PLUSBEAU)
+            this.effet(root);
     }
     
     private void rejouer(){

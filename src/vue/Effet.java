@@ -6,6 +6,12 @@ import javafx.scene.effect.Lighting;
 import javafx.scene.shape.Shape;
 
 
+//Utile? revoir avec du css?
+
+/**
+ * 
+ * effet à appliquer sur les vues.
+ */
 
 
 public abstract class Effet {

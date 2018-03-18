@@ -12,7 +12,6 @@ import static vue.Vue1.DIFFICULTE;
 
 public class Jeu {
     
-    
     private ArrayList<Shape> obs;
     private Balle ball;
     private Group root;
