@@ -11,9 +11,6 @@ import javafx.scene.shape.StrokeLineCap;
 
 /**
  * création d'un carré composé de 4 lignes de couleurs différentes.
- * @param grosseurTrait determine l'épaisseur de la ligne.
- * @param longueur determine la longueur de la ligne
- * @param listeLigne crée une liste de ligne pour l'initialisation du carré.
  * 
  */
 

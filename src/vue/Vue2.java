@@ -22,21 +22,11 @@ import static vue.Vue1.PLUSBEAU;
 /*
 *MVC pas trop respecté. A revoir la timeline et la pause.
 *
-*
 */
 
 
 /**
  * création de la Vue2; écran principal du jeu
- * @param root
- * @param scene
- * @param j classe regroupant les composants du jeu
- * @param timeline utile pour l'animation des formes et le refresh de l'écran
- * @param pauseB group pour la création du bouton pause
- * @param pause statut de la pause
- * @param labelScore affichage du score actuel
- * @param vitesse vitesse du refresh de la timeline
- * 
  */
 
 

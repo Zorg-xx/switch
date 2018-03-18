@@ -33,15 +33,6 @@ import javafx.stage.Stage;
 /**
  * La classe Vue1 affiche le menu de départ de l'application.
  * 
- * @param group layout de la scène. Tout est positionné à la main vu que la taille de la fenêtre n'est pas modifiable.
- * @param scene scene 
- * @param obs sert à l'initialisation des formes.
- * @param bu bouton pour le changement graphique
- * @param PLUSBEAU variable statique pour le changement graphique
- * @param label utile pour l'affichage de la présentation
- * @param choixDifficulte spinner pour le choix de la difficulté
- * @param DIFFICULTE variable statique pour valider la difficulté
- * @param pseudo saisie du pseudonyme du joueur
  */
 
 public class Vue1 extends Effet{

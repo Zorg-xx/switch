@@ -23,6 +23,14 @@ import modele.Rond;
 import static vue.Vue1.PLUSBEAU;
 
 
+
+/**
+ * Vue3 affiche le résultat du score avec le score et le meilleur score
+ * 
+ * 
+ */
+
+
 public class Vue3 extends Effet{
     
     private Label label;
@@ -41,9 +49,9 @@ public class Vue3 extends Effet{
         root=new Group();
         scene=new Scene(root,ps.getMaxWidth(),ps.getMaxHeight());
         scene.setFill(Color.BLACK);
-        
         ps.setScene(scene);
         
+        //Ajout de 4 cercles; pour faire jolie?
         Rond r1=new Rond(0.0,0.0,60,9,90,83);
         r1.initRond(obs, root, -360, 5);
         
@@ -57,7 +65,7 @@ public class Vue3 extends Effet{
         r4.initRond(obs, root, 360, 15);
 
 
-        
+        //création de l'affichage haut de l'écran
         Rond r11=new Rond(200.0,63.0,26,9,90,75);
         r11.initRond(obs, root, -360, 10);
         Rond r12=new Rond(299.0,63.0,26,9,90,75);
@@ -69,15 +77,15 @@ public class Vue3 extends Effet{
         label.setLayoutX(110.0);
         label.setLayoutY(20.0);
         label.setTextAlignment(TextAlignment.CENTER);
-        
         root.getChildren().add(label);
         
+        //création de l'affichage du score
         Rectangle r = new Rectangle();
         r.setY(250.0);
         r.setWidth(500.0);
         r.setHeight(50.0);
         r.setFill(Color.DIMGREY);
-        
+
         root.getChildren().add(r);
         
         Text text = new Text ();
@@ -98,6 +106,8 @@ public class Vue3 extends Effet{
         
         root.getChildren().add(score);
         
+        
+        //création de l'affichage du meilleur score
         Rectangle rec = new Rectangle();
         rec.setY(350.0);
         rec.setWidth(500.0);
@@ -132,11 +142,12 @@ public class Vue3 extends Effet{
         
         root.getChildren().add(mscore);
         
+        //création du bouton rejouer
         rejouer();
         ControleurChangeVue ccv=new ControleurChangeVue(ps);
         rejouerB.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
         
-
+        //création du bouton pour retourner au menu
         Polygon home = new Polygon();
         home.getPoints().addAll(new Double[]{
             90.0,  450.0,
@@ -160,9 +171,15 @@ public class Vue3 extends Effet{
         home.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
         root.getChildren().add(home);
         
+        //pour modifier l'aspect graphique
         if(PLUSBEAU)
             this.effet(root);
     }
+    
+    /**
+     * 
+     * création du bouton rejouer
+     */
     
     private void rejouer(){
         
