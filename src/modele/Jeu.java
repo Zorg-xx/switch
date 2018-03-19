@@ -8,13 +8,6 @@ import javafx.scene.Group;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import static vue.Vue1.DIFFICULTE;
-
-/*
-*
-*initObs et boucleObs à revoir. Code redondant
-*
-*/
-
 /**
  * Classe Jeu contient les paramètres du jeu. 
  * création des formes de départ, génération aléatoire des formes
@@ -22,7 +15,6 @@ import static vue.Vue1.DIFFICULTE;
  * 
  * 
  */
-
 
 public class Jeu {
     
@@ -35,8 +27,6 @@ public class Jeu {
     private Boolean godMode;
     private String difficulte;
     
-    
-    
     public Jeu(Group _root){
         
         x=250.0;
@@ -46,8 +36,11 @@ public class Jeu {
         obs=new ArrayList();
       
         initObstacle(5);
+    
         ball=new Balle(root,240,600);
+
         godMode=false;
+        
         difficulte=DIFFICULTE;
        
 
@@ -71,14 +64,14 @@ public class Jeu {
     /**
      * modifie le score en fonction de la difficulté
      */
-    public void setScore(){
+   public void setScore(){
         if(difficulte.equalsIgnoreCase("facile"))
             score=score+1;
         else if(difficulte.equals("normale"))
             score=score+2;
         else
             score=score+3;
-    }
+   }
     
     public Group getRoot(){
         return root;
@@ -91,7 +84,6 @@ public class Jeu {
     public Balle getBalleJ(){
         return ball;
     }
-    
     /**
      * pour determiner un sens horaire ou anti-horaire de rotation aux formes
      * @return int 360 ou -360
@@ -110,7 +102,6 @@ public class Jeu {
      * génère une forme aléatoire
      * 
      */
-    
     public final void boucleObstacle(){
         
         Random rand=new Random();
@@ -130,11 +121,7 @@ public class Jeu {
                 Etoile e1=new Etoile(x,y);
                 e1.initEtoile(obs,root, sensRotation, 5);
             break;
-               
-            /*pas d'aléatoire sur le changement de couleur de la balle.
-            *une balle placée systématiquement avant chaque croix
-            *seules couleurs possibles: cyan ou violet
-            */
+
             case 2:
                 BalleChangeante bc=new BalleChangeante(x,y+125.0,"croix");
                 bc.initBalleC(obs, root, 0, 0);
@@ -161,8 +148,9 @@ public class Jeu {
             break;   
 
         }
-        //l'ordonnée de positionnement de la forme est modifié pour la prochaine forme.
+      //l'ordonnée de positionnement de la forme est modifié pour la prochaine forme.
         this.y=y-275.0;
+
         //vidange de la liste de Shape.
         if(obs.size()>10){
             obs.remove(0);
@@ -177,6 +165,7 @@ public class Jeu {
         }
     }
     
+  
     /**
      * crée un nombre d'obstacles au départ du jeu
      * 
@@ -184,7 +173,6 @@ public class Jeu {
      * 
      * @return void
      */
-    
     private void initObstacle(int nbr){
         
         for(int i=0;i<nbr;i++){
@@ -269,14 +257,15 @@ public class Jeu {
                     if((ball.getCouleurBalle()==a.getStroke())){
                         retour=0;                     
                     }
+                    
                     /*
-                    *sinon test pour les autres formes n'étant pas des obstacles
-                    *id etoile pour la forme étoile lié au score
-                    *id changerCouleur pour la balle servant à changer de couleur
-                    *id croix pour la balle servant à changer de couleur placé avant une croix
-                    *toutes ces formes sont rendus non-visibles une fois touchée.
-                    *cf test ci-dessus pour éviter de nouveau le test
-                    */
+                     *sinon test pour les autres formes n'étant pas des obstacles
+                     *id etoile pour la forme étoile lié au score
+                     *id changerCouleur pour la balle servant à changer de couleur
+                     *id croix pour la balle servant à changer de couleur placé avant une croix
+                     *toutes ces formes sont rendus non-visibles une fois touchée.
+                     *cf test ci-dessus pour éviter de nouveau le test
+                     */
                     else if(a.getId()!=null){
                         if(a.getId().equalsIgnoreCase("etoile")){
                             retour=1;
@@ -301,10 +290,11 @@ public class Jeu {
         }  
         return retour;
     }
+    
     /**
      * permet de marquer une courte pause à la fin du jeu
      * 
-     */
+     */ 
     public void finDeJeu(){
         
         try {

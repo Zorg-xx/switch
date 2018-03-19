@@ -27,7 +27,7 @@ vitesse rotation plus l'entier est élevé, plus la vitesse est lente
 
 /**
  * Rond permet de construire un cercle en 4 arcs de couleurs différentes.
- * 
+
  */
 
 public class Rond extends Forme{

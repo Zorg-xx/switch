@@ -79,7 +79,7 @@ public class Vue1 extends Effet{
         pseudo.setStyle("-fx-text-inner-color: white;-fx-background-color: grey;-fx-alignment: center ;");
         pseudo.setLayoutY(350);
         System.out.println(pseudo.getPrefWidth());
-        group.getChildren().add(pseudo);
+        //group.getChildren().add(pseudo);
    
         //création du triangle pour simuler la forme d'un bouton start
         Polygon polygon = new Polygon();

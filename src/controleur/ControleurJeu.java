@@ -22,7 +22,12 @@ public class ControleurJeu implements EventHandler{
     private Stage s;
     private boolean monte;
     private double temps;
-    
+    /**
+     * 
+     * @param _j permet de faire les controles nécessaire pour les collisions etc
+     * @param _v permet de lancer les actions de cette vue
+     * @param _s permet de pouvoir passer la Stage entre les vues
+     */
     public ControleurJeu(Jeu _j,Vue2 _v,Stage _s){
         j=_j;
         v=_v;
@@ -30,7 +35,10 @@ public class ControleurJeu implements EventHandler{
         monte=true;
         temps=2.5;
     }
-    
+    /**
+     * Handler pour les mouvement de la balle
+     * @param event event associé
+     */
     @Override
     public void handle(Event event) {
         
@@ -83,7 +91,7 @@ public class ControleurJeu implements EventHandler{
                 if(j.getBalleJ().getYb()>650){
                     v.stop();
                     j.finDeJeu();
-                    Vue3 v3=new Vue3(s);
+                    Vue3 v3=new Vue3(s,j.getScore());
                     System.out.println("fin");
                 }    
             }
@@ -115,7 +123,10 @@ public class ControleurJeu implements EventHandler{
         monte=true;
     	temps=2.5;
     }
-    
+    /**
+     * Detecte avec quoi la balle est en collision
+     * 
+     */
     private void resultat(){
         
         switch(j.verifierCollision()){
@@ -142,7 +153,7 @@ public class ControleurJeu implements EventHandler{
                 if(!j.getGodMode()){
                     v.stop();
                     j.finDeJeu();
-                    Vue3 v3=new Vue3(s);
+                    Vue3 v3=new Vue3(s,j.getScore());
                 }
                 System.out.println("boom");
                 break;

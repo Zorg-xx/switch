@@ -7,6 +7,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
@@ -17,10 +18,25 @@ public class ControleurChangeVue implements EventHandler{
 
     Stage ps;
     
+    private TextField tf;
+    private String pseudo;
+    /**
+     * Constructueur 
+     * @param _ps primary stage
+     */
     public ControleurChangeVue(Stage _ps){
         ps=_ps;
     }
     
+    public void setTf(TextField _tf){
+    	this.tf= _tf;
+    }
+    /**
+     * Verifie sur quel boutton on appuie
+     * @param event evenement associé
+     * 
+     * 
+     */
     @Override
     public void handle(Event event) {
         

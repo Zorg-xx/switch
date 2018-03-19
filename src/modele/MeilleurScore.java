@@ -9,20 +9,24 @@
  import static javafx.scene.paint.Color.WHITE;
  import javafx.scene.text.Font;
  import javafx.scene.text.Text;
- import java.sql.Connection;
+
+import java.lang.invoke.ConstantCallSite;
+import java.sql.Connection;
  import java.sql.DriverManager;
  import java.sql.PreparedStatement;
  import java.sql.ResultSet;
  import java.sql.SQLException;
+import java.sql.Statement;
  
  /**
-  *
-  * @author Al
+  *Permet de gerer la BDD
   */
  public class MeilleurScore {
      
      private int meilleurScore;
      private String name;
+     private Connection con= null;
+     private final String URL =  "jdbc:sqlite:database/database.db";
 
     public String getName() {
         return name;
@@ -64,15 +68,81 @@
     }
   
      
-    public Connection connection (){
-        String url = "jdbc:sqlite:C://SqlLite/Db/db.db";
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+
+    
+    private void connection(){
+    	try {
+        	Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection(URL);
+            System.out.println("connected to database");
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
-        return conn;
+    }
+    
+    private void deconnect(){
+    	try {
+			con.close();
+			System.out.println("disco");
+		} catch (SQLException e) {
+			System.out.println(e.toString());
+		}
+    }
+    
+    private void insert(int score){
+    	String sql = "INSERT INTO data VALUES(?)";
+    	try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, score);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+		}
+    }
+    
+    private int getMax(){
+    	String sql = "SELECT max(score) as score FROM data";
+    	
+    	Statement stmt;
+		try {
+			stmt = con.createStatement();
+	        ResultSet rs  = stmt.executeQuery(sql);
+	        return rs.getInt("score");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return 0;
+    }
+    
+    private void init(){
+    	String sql = "CREATE TABLE IF NOT EXISTS data (score integer );";
+    	Statement stmt;
+		
+    	try {
+			stmt = con.createStatement();
+			stmt.execute(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.toString());
+		}
+    	
+    }
+    
+    /**
+     * rentre le score dans la bdd et renvois le max de toute les valeurs presentes 
+     * 
+     * @param score le score sera ajouté à la BDD
+     * @return int retourne le max des score entrée dans la BDD
+     */
+    public int getMeilleurScore1(int score ){
+    	connection();
+    	init();
+    	insert(score);
+    	int max =getMax();
+    	deconnect();
+    	return max;
     }
      
     /*

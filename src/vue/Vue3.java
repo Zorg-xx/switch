@@ -20,17 +20,15 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import modele.MeilleurScore;
 import modele.Rond;
+
+import static javafx.scene.paint.Color.WHITE;
 import static vue.Vue1.PLUSBEAU;
-
-
 
 /**
  * Vue3 affiche le résultat du score avec le score et le meilleur score
  * 
  * 
  */
-
-
 public class Vue3 extends Effet{
     
     private Label label;
@@ -42,16 +40,16 @@ public class Vue3 extends Effet{
     private int scoreFinal;
     private MeilleurScore ms;
 
-    
-    public Vue3(Stage ps){
-        
-        obs=new ArrayList();
+    public Vue3(Stage ps, int _score){
+    	scoreFinal= _score;
+    	
+    	obs=new ArrayList();
         root=new Group();
         scene=new Scene(root,ps.getMaxWidth(),ps.getMaxHeight());
         scene.setFill(Color.BLACK);
+        
         ps.setScene(scene);
         
-        //Ajout de 4 cercles; pour faire jolie?
         Rond r1=new Rond(0.0,0.0,60,9,90,83);
         r1.initRond(obs, root, -360, 5);
         
@@ -65,7 +63,7 @@ public class Vue3 extends Effet{
         r4.initRond(obs, root, 360, 15);
 
 
-        //création de l'affichage haut de l'écran
+        
         Rond r11=new Rond(200.0,63.0,26,9,90,75);
         r11.initRond(obs, root, -360, 10);
         Rond r12=new Rond(299.0,63.0,26,9,90,75);
@@ -77,15 +75,15 @@ public class Vue3 extends Effet{
         label.setLayoutX(110.0);
         label.setLayoutY(20.0);
         label.setTextAlignment(TextAlignment.CENTER);
+        
         root.getChildren().add(label);
         
-        //création de l'affichage du score
         Rectangle r = new Rectangle();
         r.setY(250.0);
         r.setWidth(500.0);
         r.setHeight(50.0);
         r.setFill(Color.DIMGREY);
-
+        
         root.getChildren().add(r);
         
         Text text = new Text ();
@@ -98,7 +96,7 @@ public class Vue3 extends Effet{
         root.getChildren().add(text);
         
         Text score = new Text ();
-        score.setText(Integer.toString(scoreFinal));
+        score.setText(""+ scoreFinal);
         score.setFill(Color.WHITE);
         score.setFont(Font.font("Arial",30));
         score.setX(210.0);
@@ -106,8 +104,142 @@ public class Vue3 extends Effet{
         
         root.getChildren().add(score);
         
+        Rectangle rec = new Rectangle();
+        rec.setY(350.0);
+        rec.setWidth(500.0);
+        rec.setHeight(50.0);
+        rec.setFill(Color.DARKGOLDENROD);
         
-        //création de l'affichage du meilleur score
+        root.getChildren().add(rec);
+        
+        Text text1 = new Text ();
+        text1.setText("Meilleur Score");
+        text1.setFill(Color.WHITE);
+        text1.setFont(Font.font("Arial",40));
+        text1.setX(115.0);
+        text1.setY(385.0);
+        
+        root.getChildren().add(text1);
+/*
+        //insertion du meilleur score dans la bd
+        ms.intiMS();
+        int  meilscor = ms.getMeilleurScore();
+        ms.majMeilleurScore(scoreFinal);
+        //ms.insert(pseudo, meilscor);
+         
+        
+        Text mscore = new Text ();
+        mscore.setText(Integer.toString(ms.majMeilleurScore(scoreFinal)));*/
+
+        
+        rejouer();
+        ControleurChangeVue ccv=new ControleurChangeVue(ps);
+        rejouerB.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
+        
+        
+        MeilleurScore ms = new MeilleurScore();
+        
+        Text msc = new Text();
+        msc.setText(ms.getMeilleurScore1(scoreFinal)+"");
+        //msc.setText(Integer.toString(maxiScore(this.name)));
+        msc.setFill(WHITE);
+        msc.setX(210);
+        msc.setY(430);
+        msc.setCache(false);
+        msc.setFont(Font.font("Arial",30));
+        root.getChildren().add(msc);
+
+        Polygon home = new Polygon();
+        home.getPoints().addAll(new Double[]{
+            90.0,  450.0,
+            100.0, 460.0,
+            100.0, 450.0,
+            110.0, 450.0,
+            110.0, 470.0,
+            130.0, 490.0,
+            120.0, 490.0,
+            120.0, 530.0,
+            100.0, 530.0,
+            100.0, 500.0,
+            80.0,  500.0,
+            80.0,  530.0,
+            60.0,  530.0,
+            60.0,  490.0,
+            50.0,  490.0
+        });
+        home.setFill(Color.WHITE);
+        home.setId("home");
+        home.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
+        root.getChildren().add(home);
+        
+        if(PLUSBEAU)
+            this.effet(root);
+    	
+    }
+    
+    public Vue3(Stage ps){
+        
+        obs=new ArrayList();
+        root=new Group();
+        scene=new Scene(root,ps.getMaxWidth(),ps.getMaxHeight());
+        scene.setFill(Color.BLACK);
+        
+        ps.setScene(scene);
+        
+        Rond r1=new Rond(0.0,0.0,60,9,90,83);
+        r1.initRond(obs, root, -360, 5);
+        
+        Rond r2=new Rond(500.0,0.0,60,9,90,83);
+        r2.initRond(obs, root, 360, 10);
+        
+        Rond r3=new Rond(500.0,660.0,60,9,90,83);
+        r3.initRond(obs, root, -360, 5);
+        
+        Rond r4=new Rond(0.0,660.0,60,9,90,83);
+        r4.initRond(obs, root, 360, 15);
+
+
+        
+        Rond r11=new Rond(200.0,63.0,26,9,90,75);
+        r11.initRond(obs, root, -360, 10);
+        Rond r12=new Rond(299.0,63.0,26,9,90,75);
+        r12.initRond(obs, root, 360, 10);
+        
+        label=new Label("C   L   R\nSWITCH");
+        label.setTextFill(Color.WHITE);
+        label.setFont(Font.font("ARIAL", 70));
+        label.setLayoutX(110.0);
+        label.setLayoutY(20.0);
+        label.setTextAlignment(TextAlignment.CENTER);
+        
+        root.getChildren().add(label);
+        
+        Rectangle r = new Rectangle();
+        r.setY(250.0);
+        r.setWidth(500.0);
+        r.setHeight(50.0);
+        r.setFill(Color.DIMGREY);
+        
+        root.getChildren().add(r);
+        
+        Text text = new Text ();
+        text.setText("Score");
+        text.setFill(Color.WHITE);
+        text.setFont(Font.font("Arial",40));
+        text.setX(175.0);
+        text.setY(285.0);
+        
+        root.getChildren().add(text);
+        
+        Text score = new Text ();
+        score.setText(scoreFinal+"");
+        score.setFill(Color.WHITE);
+        score.setFont(Font.font("Arial",30));
+        score.setX(210.0);
+        score.setY(332.0);
+        
+        root.getChildren().add(score);
+        
         Rectangle rec = new Rectangle();
         rec.setY(350.0);
         rec.setWidth(500.0);
@@ -137,17 +269,16 @@ public class Vue3 extends Effet{
         Text mscore = new Text ();
         mscore.setFill(Color.WHITE);
         mscore.setFont(Font.font("Arial",30));
-        mscore.setX(210.0);
-        mscore.setY(435.0);
+        mscore.setX(115.0);
+        mscore.setY(500.0);
         
         root.getChildren().add(mscore);
         
-        //création du bouton rejouer
         rejouer();
         ControleurChangeVue ccv=new ControleurChangeVue(ps);
         rejouerB.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
         
-        //création du bouton pour retourner au menu
+
         Polygon home = new Polygon();
         home.getPoints().addAll(new Double[]{
             90.0,  450.0,
@@ -171,11 +302,14 @@ public class Vue3 extends Effet{
         home.addEventHandler(MouseEvent.MOUSE_CLICKED, ccv);
         root.getChildren().add(home);
         
-        //pour modifier l'aspect graphique
         if(PLUSBEAU)
             this.effet(root);
     }
     
+    public void setScoreFinal(int score){
+    	scoreFinal=score;
+    	System.out.println("score set");
+    }
     /**
      * 
      * création du bouton rejouer

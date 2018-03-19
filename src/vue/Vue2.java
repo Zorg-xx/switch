@@ -22,6 +22,7 @@ import static vue.Vue1.PLUSBEAU;
 /*
 *MVC pas trop respecté. A revoir la timeline et la pause.
 *
+*
 */
 
 

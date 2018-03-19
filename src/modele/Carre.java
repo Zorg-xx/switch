@@ -11,7 +11,6 @@ import javafx.scene.shape.StrokeLineCap;
 
 /**
  * création d'un carré composé de 4 lignes de couleurs différentes.
- * 
  */
 
 public class Carre extends Forme{
